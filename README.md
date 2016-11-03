@@ -1,27 +1,39 @@
-# Ember-web-app
+# ember-web-app
 
-This README outlines the details of collaborating on this Ember addon.
+TBA
 
-## Installation
+## manifest.json
 
-* `git clone <repository-url>` this repository
-* `cd ember-web-app`
-* `npm install`
-* `bower install`
+Features:
 
-## Running
+* Generate a manifest.json file using a template.
+* Use fingerprint for images
+* Generate image variants for different devices
+* Include equivalent meta tags for supporting other devices (e.g. iphone)
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+## Development
 
-## Running Tests
+### Installation
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+```sh
+$ git clone https://github.com/san650/ember-cli-page-object.git
+$ cd $_
+$ npm install
+$ bower install
+```
 
-## Building
+### Tests
 
-* `ember build`
+```sh
+$ ember try:each
+```
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+### Project's health
+
+TBA
+
+## License
+
+ember-web-app is licensed under the MIT license.
+
+See [LICENSE](./LICENSE) for the full license text.

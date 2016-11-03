@@ -1,7 +1,7 @@
 {
   "name": "ember-web-app",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "This addon helps you configure and manage the manifest.json and meta tags needed to create progressive web applications",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,11 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "",
+  "repository": "https://github.com/san650/ember-web-app.git",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Santiago Ferreira",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
@@ -41,7 +41,13 @@
     "loader.js": "^4.0.1"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "PWA",
+    "progressive web applications",
+    "manifest.json",
+    "android",
+    "iphone",
+    "ios"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6"
