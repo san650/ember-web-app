@@ -8,5 +8,16 @@ module.exports = {
     var ProcessManifest = require('./lib/process-manifest');
 
     return new ProcessManifest('config', 'project name', 'project description');
+  },
+
+  included: function(app) {
+    var configureFingerprint = require('./lib/configure-fingerprint');
+
+    this.app = app;
+    app.options = app.options || {};
+
+    this.app.options.fingerprint = configureFingerprint(this.app.options.fingerprint);
+
+    this._super.included(app);
   }
 };
