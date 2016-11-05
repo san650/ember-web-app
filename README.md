@@ -23,7 +23,7 @@ This generates a manifest.json template in config/manifest.json
 ## Development
 
 ```sh
-$ git clone https://github.com/san650/ember-cli-page-object.git
+$ git clone https://github.com/san650/ember-web-app.git
 $ cd $_
 $ yarn          # (or npm install)
 $ bower install
