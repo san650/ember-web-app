@@ -9,8 +9,9 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:each",
-    "node-test": "mocha node-tests/**/*-test.js"
+    "test": "npm run browser-test && npm run node-test",
+    "node-test": "mocha node-tests/**/*-test.js",
+    "browser-test": "ember try:each"
   },
   "repository": "https://github.com/san650/ember-web-app.git",
   "engines": {
