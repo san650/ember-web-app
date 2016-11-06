@@ -16,14 +16,18 @@ module.exports = {
   },
 
   treeForPublic: function() {
-    var GenerateManifest = require('./lib/broccoli/generate-manifest');
+    var GenerateManifest = require('./lib/broccoli/generate-manifest-json');
 
     return new GenerateManifest('.', this.manifest);
   },
 
   contentFor: function(section, config) {
     if (section === 'head') {
-      return `<link rel="manifest" href="${config.rootURL}manifest.json">`;
+      var tags = [];
+      tags = tags.concat(require('./lib/android-link-tags')(this.manifest, config));
+      tags = tags.concat(require('./lib/android-meta-tags')(this.manifest, config));
+
+      return tags.join('\n');
     }
   },
 
