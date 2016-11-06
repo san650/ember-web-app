@@ -26,6 +26,7 @@ module.exports = {
       var tags = [];
       tags = tags.concat(require('./lib/android-link-tags')(this.manifest, config));
       tags = tags.concat(require('./lib/android-meta-tags')(this.manifest, config));
+      tags = tags.concat(require('./lib/apple-meta-tags')(this.manifest, config));
 
       return tags.join('\n');
     }
