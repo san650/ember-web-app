@@ -2,5 +2,11 @@
 module.exports = {
   description: '',
 
-  normalizeEntityName: function() {}
+  normalizeEntityName: function() {},
+
+  locals: function(options) {
+    return {
+      name: options.project.name()
+    };
+  }
 };

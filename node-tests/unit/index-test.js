@@ -4,7 +4,7 @@
 var assert = require('assert');
 var index = require('../../index');
 
-describe('index', function() {
+describe('Unit: index', function() {
   describe('contentFor()', function() {
     it('returns link tag when section is "head"', function() {
       assert.equal(index.contentFor('head', { rootURL: '/' }), '<link rel="manifest" href="/manifest.json">');

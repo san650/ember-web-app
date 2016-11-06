@@ -4,7 +4,7 @@
 var assert = require('assert');
 var configureFingerprint = require('../../lib/configure-fingerprint');
 
-describe('configureFingerprint()', function() {
+describe('Unit: configureFingerprint()', function() {
   it('returns `false` when current options is `false`', function() {
     assert.strictEqual(configureFingerprint(false), false);
   });
