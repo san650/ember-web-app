@@ -33,10 +33,14 @@ module.exports = {
   },
 
   _getManifest() {
-    var path = require('path');
-    var env = this.app.env;
-    var appConfig = this.app.project.config(env);
+    try {
+      var path = require('path');
+      var env = this.app.env;
+      var appConfig = this.app.project.config(env);
 
-    return require(path.join(this.app.project.root, 'config/manifest.js'))(env, appConfig);
+      return require(path.join(this.app.project.root, 'config/manifest.js'))(env, appConfig);
+    } catch(e) {
+      return {};
+    }
   }
 };
