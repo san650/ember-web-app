@@ -22,7 +22,30 @@ describe('Unit: index', function() {
       var expected = '<link rel="manifest" href="/foo/bar/manifest.json">';
       index.manifest = {};
 
-      assert.ok(index.contentFor('head', { rootURL: '/foo/bar/' }).includes('<link rel="manifest" href="/foo/bar/manifest.json">'));
+      assert.ok(index.contentFor('head', { rootURL: '/foo/bar/' }).includes(expected));
+    });
+
+    it('returns apple meta tags', function() {
+      var expected = '<meta name="apple-mobile-web-app-capable" content="yes">';
+      index.manifest = {};
+
+      assert.ok(index.contentFor('head', { rootURL: '/' }).includes(expected));
+    });
+
+    it('returns apple link tags', function() {
+      var expected = '<link rel="apple-touch-icon" href="/foo/bar.png" sizes="180x180">';
+      index.manifest = {
+        apple: {
+          images: [
+            {
+              src: '/foo/bar.png',
+              sizes: '180x180'
+            }
+          ]
+        }
+      };
+
+      assert.ok(index.contentFor('head', { rootURL: '/' }).includes(expected));
     });
   });
 });
