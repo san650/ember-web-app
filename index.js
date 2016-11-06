@@ -24,7 +24,10 @@ module.exports = {
   contentFor: function(section, config) {
     if (section === 'head') {
       var tags = [];
+
       tags = tags.concat(require('./lib/android-link-tags')(this.manifest, config));
+      tags = tags.concat(require('./lib/apple-link-tags')(this.manifest, config));
+
       tags = tags.concat(require('./lib/android-meta-tags')(this.manifest, config));
       tags = tags.concat(require('./lib/apple-meta-tags')(this.manifest, config));
 

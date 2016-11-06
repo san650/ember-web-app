@@ -31,5 +31,21 @@ describe('Unit: index', function() {
 
       assert.ok(index.contentFor('head', { rootURL: '/' }).includes(expected));
     });
+
+    it('returns apple link tags', function() {
+      var expected = '<link rel="apple-touch-icon" href="/foo/bar.png" sizes="180x180">';
+      index.manifest = {
+        apple: {
+          images: [
+            {
+              src: '/foo/bar.png',
+              sizes: '180x180'
+            }
+          ]
+        }
+      };
+
+      assert.ok(index.contentFor('head', { rootURL: '/' }).includes(expected));
+    });
   });
 });
