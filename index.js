@@ -21,10 +21,9 @@ module.exports = {
     this._super.included(app);
   },
 
-  contentFor: function(section) {
+  contentFor: function(section, config) {
     if (section === 'head') {
-      // FIXME: Add support for {{rootURL}}
-      return '<link rel="manifest" href="/manifest.json">';
+      return `<link rel="manifest" href="${config.rootURL}manifest.json">`;
     }
   }
 };
