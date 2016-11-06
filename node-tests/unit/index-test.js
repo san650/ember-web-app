@@ -7,15 +7,22 @@ var index = require('../../index');
 describe('Unit: index', function() {
   describe('contentFor()', function() {
     it('returns link tag when section is "head"', function() {
-      assert.equal(index.contentFor('head', { rootURL: '/' }), '<link rel="manifest" href="/manifest.json">');
+      var expected = '<link rel="manifest" href="/manifest.json">';
+      index.manifest = {};
+
+      assert.ok(index.contentFor('head', { rootURL: '/' }).includes(expected));
     });
 
     it('returns empty when section is other than "head"', function() {
+      index.manifest = {};
       assert.equal(index.contentFor('head-footer', { rootURL: '/' }), null);
     });
 
     it('uses rootURL config', function() {
-      assert.equal(index.contentFor('head', { rootURL: '/foo/bar/' }), '<link rel="manifest" href="/foo/bar/manifest.json">');
+      var expected = '<link rel="manifest" href="/foo/bar/manifest.json">';
+      index.manifest = {};
+
+      assert.ok(index.contentFor('head', { rootURL: '/foo/bar/' }).includes('<link rel="manifest" href="/foo/bar/manifest.json">'));
     });
   });
 });

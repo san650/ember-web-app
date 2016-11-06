@@ -5,14 +5,14 @@ var assert = require('assert');
 var readFileSync = require('fs').readFileSync;
 var path = require('path');
 
-var GenerateManifest = require('../../lib/broccoli/generate-manifest');
+var GenerateManifest = require('../../lib/broccoli/generate-manifest-json');
 
 describe('Broccoli: ProcessManifest', function() {
   var GenerateManifestHelper = makeTestHelper({
     fixturePath: __dirname,
 
     subject: function(inputNode) {
-      return new GenerateManifest(inputNode, { foo: 'bar' });
+      return new GenerateManifest(inputNode, { foo: 'bar', apple: 'baz', ms: 'qux' });
     },
   });
 
@@ -29,6 +29,20 @@ describe('Broccoli: ProcessManifest', function() {
       .then(readManifest)
       .then(function(manifest) {
         assert.equal(manifest.foo, 'bar');
+      });
+  });
+
+  it('ignores vendor specific files', function() {
+    return GenerateManifestHelper('fixtures')
+      .then(function(result) {
+        assert.deepEqual(result.files, ['manifest.json']);
+        return path.join(result.directory, result.files[0]);
+      })
+      .then(readManifest)
+      .then(function(manifest) {
+        assert.equal(manifest.foo, 'bar');
+        assert.strictEqual(manifest.apple, undefined);
+        assert.strictEqual(manifest.ms, undefined);
       });
   });
 });
