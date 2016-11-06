@@ -20,8 +20,6 @@
   "author": "Santiago Ferreira",
   "license": "MIT",
   "devDependencies": {
-    "broccoli-asset-rev": "^2.5.0",
-    "broccoli-plugin": "^1.2.2",
     "broccoli-test-helpers": "0.0.9",
     "ember-ajax": "^2.0.1",
     "ember-cli": "2.8.0",
@@ -56,7 +54,9 @@
     "ios"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.6"
+    "ember-cli-babel": "^5.1.6",
+    "broccoli-asset-rev": "^2.5.0",
+    "broccoli-plugin": "^1.2.2"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
