@@ -19,5 +19,12 @@ module.exports = {
     this.app.options.fingerprint = configureFingerprint(this.app.options.fingerprint);
 
     this._super.included(app);
+  },
+
+  contentFor: function(section) {
+    if (section === 'head') {
+      // FIXME: Add support for {{rootURL}}
+      return '<link rel="manifest" href="/manifest.json">';
+    }
   }
 };
