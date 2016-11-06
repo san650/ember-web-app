@@ -1,6 +1,6 @@
 {
   "name": "ember-web-app",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "This addon helps you configure and manage the manifest.json and meta tags needed to create progressive web applications",
   "directories": {
     "doc": "doc",
