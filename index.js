@@ -12,7 +12,7 @@ module.exports = {
 
     this.manifest = this._getManifest();
 
-    this._super.included.apply(this, arguments);
+    this._super.included(app);
   },
 
   treeForPublic: function() {
