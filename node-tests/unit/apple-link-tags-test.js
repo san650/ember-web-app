@@ -11,7 +11,7 @@ describe('Unit: appleLinkTags()', function() {
     };
     var manifest = {
       apple: {
-        images: [
+        icons: [
           {
             src: '/foo/bar.png',
             sizes: '180x180'
@@ -40,7 +40,7 @@ describe('Unit: appleLinkTags()', function() {
     assert.deepEqual(appleLinkTags(manifest, config), expected);
   });
 
-  it('returns empty array when images is not defined', function() {
+  it('returns empty array when icons is not defined', function() {
     var config = {};
     var manifest = {
       apple: {}

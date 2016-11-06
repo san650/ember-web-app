@@ -36,7 +36,7 @@ describe('Unit: index', function() {
       var expected = '<link rel="apple-touch-icon" href="/foo/bar.png" sizes="180x180">';
       index.manifest = {
         apple: {
-          images: [
+          icons: [
             {
               src: '/foo/bar.png',
               sizes: '180x180'
