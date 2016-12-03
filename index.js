@@ -10,26 +10,27 @@ module.exports = {
 
     this._configureFingerprint();
 
-    this.manifest = this._getManifest();
+    this.manifestConfiguration = this._getManifestConfiguration();
 
     this._super.included(app);
   },
 
   treeForPublic: function() {
+    var generateManifestFromConfiguration = require('./lib/generate-manifest-from-json');
     var GenerateManifest = require('./lib/broccoli/generate-manifest-json');
 
-    return new GenerateManifest('.', this.manifest);
+    return new GenerateManifest('.', generateManifestFromConfiguration(this.manifestConfiguration));
   },
 
   contentFor: function(section, config) {
     if (section === 'head') {
       var tags = [];
 
-      tags = tags.concat(require('./lib/android-link-tags')(this.manifest, config));
-      tags = tags.concat(require('./lib/apple-link-tags')(this.manifest, config));
+      tags = tags.concat(require('./lib/android-link-tags')(this.manifestConfiguration, config));
+      tags = tags.concat(require('./lib/apple-link-tags')(this.manifestConfiguration, config));
 
-      tags = tags.concat(require('./lib/android-meta-tags')(this.manifest, config));
-      tags = tags.concat(require('./lib/apple-meta-tags')(this.manifest, config));
+      tags = tags.concat(require('./lib/android-meta-tags')(this.manifestConfiguration, config));
+      tags = tags.concat(require('./lib/apple-meta-tags')(this.manifestConfiguration, config));
 
       return tags.join('\n');
     }
@@ -40,7 +41,7 @@ module.exports = {
     this.app.options.fingerprint = configureFingerprint(this.app.options.fingerprint);
   },
 
-  _getManifest() {
+  _getManifestConfiguration() {
     try {
       var path = require('path');
       var env = this.app.env;
