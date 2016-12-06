@@ -13,7 +13,6 @@ describe('Blueprints: ember generate and destroy ember-web-app', function() {
   it('ember-web-app', function() {
     var args = ['ember-web-app', 'foo'];
 
-    // pass any additional command line options in the arguments array
     return emberNew()
       .then(() => emberGenerateDestroy(args, (file) => {
         expect(file('config/manifest.js'))
