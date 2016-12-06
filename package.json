@@ -46,6 +46,7 @@
     "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1",
     "mocha": "2.5.3",
+    "rsvp": "^3.3.3",
     "strip-ansi": "^3.0.1"
   },
   "keywords": [
