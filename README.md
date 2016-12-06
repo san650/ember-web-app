@@ -76,69 +76,69 @@ Not all targets are used for all properties (actually, most properties are not a
 
 > Provides a human-readable name for the application as it is intended to be displayed to the user, for example among a list of other applications or as a label for an icon.
 
-*Example*
+Example
 
 ```js
 manifest.name = "dummy";
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "name": "dummy" }`
-`apple` | `<meta name="apple-mobile-web-app-title" content="dummy">`
-`ms` | `<meta name="application-name" content="dummy">`
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "name": "dummy" }`
+| `apple`    | `<meta name="apple-mobile-web-app-title" content="dummy">`
+| `ms`       | `<meta name="application-name" content="dummy">`
+| `android`  | does not apply
 
 #### `short_name`
 
 > Provides a short human-readable name for the application. This is intended for use where there is insufficient space to display the full name of the web application.
 
-*Example*
+Example
 
 ```js
 manifest.short_name = "dummy";
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "short_name": "dummy" }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "short_name": "dummy" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `background_color`
 
 > Defines the expected background color for the web application.
 
-*Example*
+Example
 
 ```js
 manifest.background_color = "#fff";
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "background_color": "#fff" }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "background_color": "#fff" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `description`
 
 > Provides a general description of what the web application does.
 
-*Example*
+Example
 
 ```js
 manifest.description = "Lorem ipsum dolor";
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "description": "Lorem ipsum dolor" }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "description": "Lorem ipsum dolor" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `dir`
 
@@ -149,18 +149,18 @@ Possible values:
   * rtl (right-to-left)
   * auto
 
-*Example*
+Example
 
 ```js
 manifest.dir = "ltr";
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "dir": "ltr" }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "dir": "ltr" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `display`
 
@@ -172,18 +172,18 @@ Possible values:
   * minimal-ui
   * browser
 
-*Example*
+Example
 
 ```js
 manifest.display = "fullscreen";
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "display": "fullscreen" }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "display": "fullscreen" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `icons`
 
@@ -195,7 +195,7 @@ Image object members:
   * `type` A hint as to the media type of the image.
   * `targets` **Non standard** Targets for the images. ['manifest', 'apple'] by default.
 
-*Example*
+Example
 
 ```js
 icons: [
@@ -211,29 +211,29 @@ icons: [
 ];
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "icons": [ { "src": "/foo/bar.png", "sizes": "180x180" } ] }`
-`apple` | `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="180x180">` `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="280x280">`
-`ms` | does not apply (for now)
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "icons": [ { "src": "/foo/bar.png", "sizes": "180x180" } ] }`
+| `apple`    | `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="180x180">` `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="280x280">`
+| `ms`       | does not apply (for now)
+| `android`  | does not apply
 
 #### `lang`
 
 > Specifies the primary language for the values in the name and short_name members.
 
-*Example*
+Example
 
 ```js
 manifest.lang = "es-UY";
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "lang": "en-UY" }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "lang": "en-UY" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `orientation`
 
@@ -249,18 +249,18 @@ Possible values:
   * portrait-primary
   * portrait-secondary
 
-*Example*
+Example
 
 ```js
 manifest.orientation = "portrait";
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "orientation": "portrait" }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "orientation": "portrait" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `prefer_related_applications`
 
@@ -270,18 +270,18 @@ Possible values:
   * true
   * false
 
-*Example*
+Example
 
 ```js
 manifest.prefer_related_applications = true;
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "prefer_related_applications": true }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "prefer_related_applications": true }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `related_applications`
 
@@ -292,7 +292,7 @@ Application object members:
   * `url` The URL at which the application can be found.
   * `id` The ID used to represent the application on the specified platform.
 
-*Example*
+Example
 
 ```js
 manifest.prefer_related_applications = true;
@@ -304,63 +304,63 @@ manifest.related_applications = [
 ];
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "prefer_related_applications": true, "related_applications": [{"platform": "itunes", "url": "https://itunes.apple.com/app/example-app1/id123456789" }] }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "prefer_related_applications": true, "related_applications": [{"platform": "itunes", "url": "https://itunes.apple.com/app/example-app1/id123456789" }] }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `scope`
 
 > Defines the navigation scope of this web application's application context. This basically restricts what web pages can be viewed while the manifest is applied.
 
-*Example*
+Example
 
 ```js
 manifest.scope = "/myapp/";
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "scope": "/myapp/" }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "scope": "/myapp/" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `start_url`
 
 > Specifies the URL that loads when a user launches the application from a device.
 
-*Example*
+Example
 
 ```js
 manifest.start_url = "./?utm_source=web_app_manifest";
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "start_url": "./?utm_source=web_app_manifest" }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "start_url": "./?utm_source=web_app_manifest" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `theme_color`
 
 > Defines the default theme color for an application. This sometimes affects how the application is displayed by the OS.
 
-*Example*
+Example
 
 ```js
 manifest.theme_color = "aliceblue";
 ```
 
-*Generates for each target*
-
-`manifest` | `{ "theme_color": "aliceblue" }`
-`apple` | does not apply
-`ms` | does not apply
-`android` | `<meta name="theme-color" content="aliceblue">'
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "theme_color": "aliceblue" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | `<meta name="theme-color" content="aliceblue">'
 
 ### Vendor specific properties (non-standard)
 
@@ -377,7 +377,7 @@ Possible values:
 
 Note that if set to default or black, the web content is displayed below the status bar. If set to black-translucent, the web content is displayed on the entire screen, partially obscured by the status bar.
 
-*Example*
+Example
 
 ```js
 manifest.apple = {
@@ -385,12 +385,12 @@ manifest.apple = {
 };
 ```
 
-*Generates for each target*
-
-`manifest` | does not apply
-`apple` | `<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">`
-`ms` | does not apply
-`android` | does not apply
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | does not apply
+| `apple`    | `<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">`
+| `ms`       | does not apply
+| `android`  | does not apply
 
 ## Project's health
 
