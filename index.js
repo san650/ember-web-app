@@ -16,7 +16,15 @@ module.exports = {
   },
 
   treeForPublic: function() {
-    var generateManifestFromConfiguration = require('./lib/generate-manifest-from-json');
+    var generateManifestFromConfiguration = require('./lib/generate-manifest-from-configuration');
+    var validate = require('web-app-manifest-validator');
+    var manifest = generateManifestFromConfiguration(this.manifestConfiguration);
+    var ui = this.ui;
+
+    validate(manifest).forEach(function(error) {
+      ui.writeWarnLine('MANIFEST VALIDATION: ' + error);
+    });
+
     var GenerateManifest = require('./lib/broccoli/generate-manifest-json');
 
     return new GenerateManifest('.', generateManifestFromConfiguration(this.manifestConfiguration));
