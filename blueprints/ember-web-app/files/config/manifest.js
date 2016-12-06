@@ -10,6 +10,7 @@ module.exports = function(/* environment, appConfig */) {
     display: "standalone",
     background_color: "#fff",
     theme_color: "#fff",
-    icons: []
+    icons: [
+    ]
   };
 }
