@@ -7,6 +7,10 @@ module.exports = {
         dependencies: { }
       }
     },
+    /*
+
+    Disable these scenarios for now
+
     {
       name: 'ember-1.13',
       bower: {
@@ -51,5 +55,6 @@ module.exports = {
         }
       }
     }
+    */
   ]
 };
