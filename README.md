@@ -56,6 +56,22 @@ Not all targets are used for all properties (actually, most properties are not a
 
 ### List of the supported properties.
 
+* [`name`](#name)
+* [`short_name`](#short_name)
+* [`background_color`](#background_color)
+* [`description`](#description)
+* [`dir`](#dir)
+* [`display`](#display)
+* [`icons`](#icons)
+* [`lang`](#lang)
+* [`orientation`](#orientation)
+* [`prefer_related_applications`](#prefer_related_applications)
+* [`related_applications`](#related_applications)
+* [`scope`](#scope)
+* [`start_url`](#start_url)
+* [`theme_color`](#theme_color)
+* [`apple.statusBarStyle`](#applestatusbarstyle)
+
 #### `name`
 
 > Provides a human-readable name for the application as it is intended to be displayed to the user, for example among a list of other applications or as a label for an icon.
