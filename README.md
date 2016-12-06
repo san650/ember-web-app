@@ -1,7 +1,7 @@
 # ember-web-app
 [![Build Status](https://travis-ci.org/san650/ember-web-app.svg?branch=master)](https://travis-ci.org/san650/ember-web-app)
 
-This Ember addon helps you configure and manage the manifest.json and meta tags needed to create a Progressive Web Application
+This Ember addon helps you configure and manage the web app manifest and related meta tags needed to create a Progressive Web Application
 
 From [MDN](https://developer.mozilla.org/en-US/docs/Web/Manifest)
 
@@ -24,7 +24,7 @@ Addon features:
 $ ember install ember-web-app
 ```
 
-This generates a manifest.json template in config/manifest.json
+This generates a config/manifest.js configuration file.
 
 ## Development
 

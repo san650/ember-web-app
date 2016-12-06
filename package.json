@@ -1,7 +1,7 @@
 {
   "name": "ember-web-app",
   "version": "1.0.0-alpha.5",
-  "description": "This addon helps you configure and manage the manifest.json and meta tags needed to create progressive web applications",
+  "description": "This Ember addon helps you configure and manage the web app manifest and related meta tags needed to create a Progressive Web Application",
   "directories": {
     "doc": "doc",
     "test": "tests"
