@@ -47,14 +47,12 @@ describe('Unit: index', function() {
       var index = createIndex();
 
       index.manifestConfiguration = {
-        apple: {
-          icons: [
-            {
-              src: '/foo/bar.png',
-              sizes: '180x180'
-            }
-          ]
-        }
+        icons: [
+          {
+            src: '/foo/bar.png',
+            sizes: '180x180'
+          }
+        ]
       };
 
       assert.ok(index.contentFor('head', { rootURL: '/' }).includes(expected));

@@ -28,4 +28,59 @@ describe('Unit: generateManifestFromConfiguration()', function() {
 
     assert.deepEqual(generateManifestFromConfiguration(manifest), { foo: 'bar' });
   });
+
+  it('includes icons with no target definition', function() {
+    var expected = {
+      icons: [
+        {
+          src: 'foo/bar.png',
+          sizes: '120x120',
+          type: 'image/png'
+        }
+      ]
+    };
+
+    var manifest = {
+      icons: [
+        {
+          src: 'foo/bar.png',
+          sizes: '120x120',
+          type: 'image/png'
+        }
+      ]
+    };
+
+    assert.deepEqual(generateManifestFromConfiguration(manifest), expected);
+  });
+
+  it('filters icons that has a different target than manifest', function() {
+    var expected = {
+      icons: [
+        {
+          src: 'baz/qux.png',
+          sizes: '120x120',
+          type: 'image/png'
+        }
+      ]
+    };
+
+    var manifest = {
+      icons: [
+        {
+          src: 'foo/bar.png',
+          sizes: '120x120',
+          type: 'image/png',
+          targets: ['apple']
+        },
+        {
+          src: 'baz/qux.png',
+          sizes: '120x120',
+          type: 'image/png',
+          targets: ['manifest']
+        }
+      ]
+    };
+
+    assert.deepEqual(generateManifestFromConfiguration(manifest), expected);
+  });
 });
