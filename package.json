@@ -11,7 +11,8 @@
     "start": "ember server",
     "test": "npm run browser-test && npm run node-test",
     "node-test": "mocha --recursive node-tests",
-    "browser-test": "ember try:each"
+    "browser-test": "ember try:each",
+    "fast-test": "SKIP_ACCEPTANCE=true npm run node-test"
   },
   "repository": "https://github.com/san650/ember-web-app.git",
   "engines": {
@@ -21,8 +22,10 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-test-helpers": "0.0.9",
+    "console-ui": "^1.0.2",
     "ember-ajax": "^2.0.1",
     "ember-cli": "2.8.0",
+    "ember-cli-addon-tests": "^0.4.1",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-blueprint-test-helpers": "0.13.0",
     "ember-cli-dependency-checker": "^1.2.0",
@@ -42,7 +45,9 @@
     "ember-resolver": "^2.0.3",
     "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1",
-    "mocha": "2.5.3"
+    "mocha": "2.5.3",
+    "rsvp": "^3.3.3",
+    "strip-ansi": "^3.0.1"
   },
   "keywords": [
     "ember-addon",
@@ -54,9 +59,10 @@
     "ios"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.6",
     "broccoli-asset-rev": "^2.5.0",
-    "broccoli-plugin": "^1.2.2"
+    "broccoli-plugin": "^1.2.2",
+    "ember-cli-babel": "^5.1.6",
+    "web-app-manifest-validator": "^1.0.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
