@@ -1,8 +1,6 @@
 # ember-web-app
 [![Build Status](https://travis-ci.org/san650/ember-web-app.svg?branch=master)](https://travis-ci.org/san650/ember-web-app)
 
-__THIS IS STILL A WORK IN PROGRESS__
-
 This Ember addon helps you configure and manage the manifest.json and meta tags needed to create a Progressive Web Application
 
 From [MDN](https://developer.mozilla.org/en-US/docs/Web/Manifest)
