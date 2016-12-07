@@ -46,7 +46,6 @@
     "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1",
     "mocha": "2.5.3",
-    "object-assign": "^4.1.0",
     "rsvp": "^3.3.3",
     "strip-ansi": "^3.0.1"
   },
@@ -63,6 +62,7 @@
     "broccoli-asset-rev": "^2.5.0",
     "broccoli-plugin": "^1.2.2",
     "ember-cli-babel": "^5.1.6",
+    "object-assign": "^4.1.0",
     "web-app-manifest-validator": "^1.0.0"
   },
   "ember-addon": {
