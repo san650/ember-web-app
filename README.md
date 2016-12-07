@@ -14,9 +14,13 @@ Addon features:
 
 * Generates a manifest.json file using a JavaScript template
 * Uses fingerprint for images
-* Generates image variants for different devices (**Not implemented yet!**)
 * Generates equivalent meta tags for supporting other devices (e.g. iPhone)
 * Validates the configuration
+
+Here's a brief list of the main missing features that we intend to add in the future.
+
+* Generate image variants for different devices
+* Generate Microsoft's browserconfig.xml manifest for Win8/Win10 integration
 
 ## Installation
 
