@@ -1,16 +1,28 @@
 # ember-web-app
 [![Build Status](https://travis-ci.org/san650/ember-web-app.svg?branch=master)](https://travis-ci.org/san650/ember-web-app)
 
-__THIS IS STILL A WORK IN PROGRESS__
+This Ember addon helps you configure and manage the web app manifest and related meta tags needed to create a Progressive Web Application
 
-This Ember addon helps you configure and manage the manifest.json and meta tags needed to create a Progressive Web Application
+From [MDN](https://developer.mozilla.org/en-US/docs/Web/Manifest)
 
-Features:
+> The web app manifest provides information about an application (such as name,
+> author, icon, and description) in a text file. The purpose of the manifest is
+> to install web applications to the homescreen of a device, providing users
+> with quicker access and a richer experience.
 
-* Generate a manifest.json file using a template.
-* Use fingerprint for images
+Addon features:
+
+* Generates a manifest.json file using a JavaScript template
+* Uses fingerprint for images
+* Generates equivalent meta tags for supporting other devices (e.g. iPhone)
+* Validates the configuration
+
+Here's a brief list of the main missing features that we intend to add in the future.
+
 * Generate image variants for different devices
-* Include equivalent meta tags for supporting other devices (e.g. iphone)
+* Generate Microsoft's browserconfig.xml manifest for Win8/Win10 integration
+
+See the [documentation](#documentation) section below for more information.
 
 ## Installation
 
@@ -18,7 +30,7 @@ Features:
 $ ember install ember-web-app
 ```
 
-This generates a manifest.json template in config/manifest.json
+This generates a config/manifest.js configuration file.
 
 ## Development
 
@@ -35,7 +47,360 @@ Running tests
 $ npm test
 ```
 
-### Project's health
+## Documentation
+
+This Ember addon generates a [Web Application Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) at build time using the `config/manifest.js` configuration file.
+
+It also generates some compatibility meta tags for supporting vendor specific web application features like Apple's [Web Content For Safari](https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/Introduction/Introduction.html) and Microsoft's [Browser configuration schema](https://msdn.microsoft.com/en-us/library/dn320426%28v=vs.85%29.aspx) that don't yet support the Web Application Manifest standard.
+
+Internally, this addon takes into account four different types of targets for generating the web app manifest taking care of geneating some backward compatibility meta tags in order to support as much devices and browsers as possible. These targets are:
+
+* manifest (default target)
+* apple (to target iOS devices)
+* ms (to target Win8/Win10 devices)
+* android (to target options specific for android devices)
+
+Not all targets are used for all properties (actually, most properties are not affected by the targets).
+
+### List of supported properties.
+
+* [`name`](#name)
+* [`short_name`](#short_name)
+* [`background_color`](#background_color)
+* [`description`](#description)
+* [`dir`](#dir)
+* [`display`](#display)
+* [`icons`](#icons)
+* [`lang`](#lang)
+* [`orientation`](#orientation)
+* [`prefer_related_applications`](#prefer_related_applications)
+* [`related_applications`](#related_applications)
+* [`scope`](#scope)
+* [`start_url`](#start_url)
+* [`theme_color`](#theme_color)
+* [`apple.statusBarStyle`](#applestatusbarstyle)
+
+#### `name`
+
+> Provides a human-readable name for the application as it is intended to be displayed to the user, for example among a list of other applications or as a label for an icon.
+
+Example
+
+```js
+manifest.name = "dummy";
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "name": "dummy" }`
+| `apple`    | `<meta name="apple-mobile-web-app-title" content="dummy">`
+| `ms`       | `<meta name="application-name" content="dummy">`
+| `android`  | does not apply
+
+#### `short_name`
+
+> Provides a short human-readable name for the application. This is intended for use where there is insufficient space to display the full name of the web application.
+
+Example
+
+```js
+manifest.short_name = "dummy";
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "short_name": "dummy" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `background_color`
+
+> Defines the expected background color for the web application.
+
+Example
+
+```js
+manifest.background_color = "#fff";
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "background_color": "#fff" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `description`
+
+> Provides a general description of what the web application does.
+
+Example
+
+```js
+manifest.description = "Lorem ipsum dolor";
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "description": "Lorem ipsum dolor" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `dir`
+
+> Specifies the primary text direction for the `name`, `short_name`, and description members.
+
+Possible values:
+  * ltr (left-to-right)
+  * rtl (right-to-left)
+  * auto
+
+Example
+
+```js
+manifest.dir = "ltr";
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "dir": "ltr" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `display`
+
+> Defines the developer's preferred display mode for the web application.
+
+Possible values:
+  * fullscreen
+  * standalone
+  * minimal-ui
+  * browser
+
+Example
+
+```js
+manifest.display = "fullscreen";
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "display": "fullscreen" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `icons`
+
+> Specifies an array of image objects that can serve as application icons in various contexts. For example, they can be used to represent the web application amongst a list of other applications, or to integrate the web application with an OS's task switcher and/or system preferences.
+
+Image object members:
+  * `src` The path to the image file.
+  * `sizes` A string containing space-separated image dimensions.
+  * `type` A hint as to the media type of the image.
+  * `targets` **Non standard** Targets for the images. ['manifest', 'apple'] by default.
+
+Example
+
+```js
+icons: [
+  {
+    src: '/foo/bar.png',
+    sizes: '180x180'
+  },
+  {
+    src: '/bar/baz.png',
+    sizes: '280x280',
+    targets: ['apple']  // non-standard property
+  }
+];
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "icons": [ { "src": "/foo/bar.png", "sizes": "180x180" } ] }`
+| `apple`    | `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="180x180">` `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="280x280">`
+| `ms`       | does not apply (for now)
+| `android`  | does not apply
+
+#### `lang`
+
+> Specifies the primary language for the values in the name and short_name members.
+
+Example
+
+```js
+manifest.lang = "es-UY";
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "lang": "en-UY" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `orientation`
+
+> Defines the default orientation for all the web application's top level browsing contexts.
+
+Possible values:
+  * any
+  * natural
+  * landscape
+  * landscape-primary
+  * landscape-secondary
+  * portrait
+  * portrait-primary
+  * portrait-secondary
+
+Example
+
+```js
+manifest.orientation = "portrait";
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "orientation": "portrait" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `prefer_related_applications`
+
+> Specifies a boolean value that hints for the user agent to indicate to the user that the specified related applications are available, and recommended over the web application.
+
+Possible values:
+  * true
+  * false
+
+Example
+
+```js
+manifest.prefer_related_applications = true;
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "prefer_related_applications": true }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `related_applications`
+
+> Specifies an array of "application objects" representing native applications that are installable by, or accessible to, the underlying platform.
+
+Application object members:
+  * `platform` The platform on which the application can be found.
+  * `url` The URL at which the application can be found.
+  * `id` The ID used to represent the application on the specified platform.
+
+Example
+
+```js
+manifest.prefer_related_applications = true;
+manifest.related_applications = [
+  {
+    "platform": "itunes",
+    "url": "https://itunes.apple.com/app/example-app1/id123456789"
+  }
+];
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "prefer_related_applications": true, "related_applications": [{"platform": "itunes", "url": "https://itunes.apple.com/app/example-app1/id123456789" }] }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `scope`
+
+> Defines the navigation scope of this web application's application context. This basically restricts what web pages can be viewed while the manifest is applied.
+
+Example
+
+```js
+manifest.scope = "/myapp/";
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "scope": "/myapp/" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `start_url`
+
+> Specifies the URL that loads when a user launches the application from a device.
+
+Example
+
+```js
+manifest.start_url = "./?utm_source=web_app_manifest";
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "start_url": "./?utm_source=web_app_manifest" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `theme_color`
+
+> Defines the default theme color for an application. This sometimes affects how the application is displayed by the OS.
+
+Example
+
+```js
+manifest.theme_color = "aliceblue";
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "theme_color": "aliceblue" }`
+| `apple`    | does not apply
+| `ms`       | does not apply
+| `android`  | `<meta name="theme-color" content="aliceblue">'
+
+### Vendor specific properties (non-standard)
+
+#### `apple.statusBarStyle`
+
+> Sets the style of the status bar for a web application in iOS
+
+See [Changing the Status Bar Appearance](https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html#//apple_ref/doc/uid/TP40002051-CH3-SW1)
+
+Possible values:
+  * `default` The status bar appears normal.
+  * `black` The status bar has a black background.
+  * `black-translucent` The status bar is black and translucent.
+
+Note that if set to default or black, the web content is displayed below the status bar. If set to black-translucent, the web content is displayed on the entire screen, partially obscured by the status bar.
+
+Example
+
+```js
+manifest.apple = {
+ statusBarStyle: 'black-translucent'
+};
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | does not apply
+| `apple`    | `<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">`
+| `ms`       | does not apply
+| `android`  | does not apply
+
+## Project's health
 
 [![Build Status](https://travis-ci.org/san650/ember-web-app.svg?branch=master)](https://travis-ci.org/san650/ember-web-app)
 
