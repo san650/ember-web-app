@@ -368,7 +368,7 @@ manifest.theme_color = "aliceblue";
 | `manifest` | `{ "theme_color": "aliceblue" }`
 | `apple`    | does not apply
 | `ms`       | does not apply
-| `android`  | `<meta name="theme-color" content="aliceblue">'
+| `android`  | `<meta name="theme-color" content="aliceblue">`
 
 ### Vendor specific properties (non-standard)
 
