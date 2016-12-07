@@ -22,6 +22,8 @@ Here's a brief list of the main missing features that we intend to add in the fu
 * Generate image variants for different devices
 * Generate Microsoft's browserconfig.xml manifest for Win8/Win10 integration
 
+See the [documentation](#documentation) section below for more information.
+
 ## Installation
 
 ```sh
