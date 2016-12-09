@@ -53,7 +53,7 @@ This Ember addon generates a [Web Application Manifest](https://developer.mozill
 
 It also generates some compatibility meta tags for supporting vendor specific web application features like Apple's [Web Content For Safari](https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/Introduction/Introduction.html) and Microsoft's [Browser configuration schema](https://msdn.microsoft.com/en-us/library/dn320426%28v=vs.85%29.aspx) that don't yet support the Web Application Manifest standard.
 
-Internally, this addon takes into account four different types of targets for generating the web app manifest taking care of geneating some backward compatibility meta tags in order to support as much devices and browsers as possible. These targets are:
+Internally, this addon takes into account four different types of targets for generating the web app manifest taking care of including some backward compatibility meta tags in order to support as many devices and browsers as possible. These targets are:
 
 * manifest (default target)
 * apple (to target iOS devices)
