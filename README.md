@@ -1,5 +1,6 @@
 # ember-web-app
 [![Build Status](https://travis-ci.org/san650/ember-web-app.svg?branch=master)](https://travis-ci.org/san650/ember-web-app)
+[![Ember Observer Score](https://emberobserver.com/badges/ember-web-app.svg)](https://emberobserver.com/addons/ember-web-app)
 
 This Ember addon helps you configure and manage the web app manifest and related meta tags needed to create a Progressive Web Application
 
@@ -403,6 +404,7 @@ manifest.apple = {
 ## Project's health
 
 [![Build Status](https://travis-ci.org/san650/ember-web-app.svg?branch=master)](https://travis-ci.org/san650/ember-web-app)
+[![Ember Observer Score](https://emberobserver.com/badges/ember-web-app.svg)](https://emberobserver.com/addons/ember-web-app)
 
 ## License
 
