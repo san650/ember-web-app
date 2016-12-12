@@ -72,4 +72,23 @@ describe('Unit: appleLinkTags()', function() {
 
     assert.deepEqual(appleLinkTags(manifest, config), expected);
   });
+
+  it('does not render sizes attribute when is not defined', function() {
+    var config = {
+      rootURL: '/'
+    };
+    var manifest = {
+      icons: [
+        {
+          src: '/foo/bar.png'
+        }
+      ]
+    };
+
+    var expected = [
+      '<link rel="apple-touch-icon" href="/foo/bar.png">',
+    ];
+
+    assert.deepEqual(appleLinkTags(manifest, config), expected);
+  });
 });
