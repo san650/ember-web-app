@@ -27,7 +27,7 @@ module.exports = {
 
     var GenerateManifest = require('./lib/broccoli/generate-manifest-json');
 
-    return new GenerateManifest('.', generateManifestFromConfiguration(this.manifestConfiguration));
+    return new GenerateManifest(generateManifestFromConfiguration(this.manifestConfiguration));
   },
 
   contentFor: function(section, config) {

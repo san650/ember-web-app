@@ -11,8 +11,8 @@ describe('Broccoli: ProcessManifest', function() {
   var GenerateManifestHelper = makeTestHelper({
     fixturePath: __dirname,
 
-    subject: function(inputNode) {
-      return new GenerateManifest(inputNode, { foo: 'bar', apple: 'baz', ms: 'qux' });
+    subject: function() {
+      return new GenerateManifest({ foo: 'bar', apple: 'baz', ms: 'qux' });
     },
   });
 
@@ -21,7 +21,7 @@ describe('Broccoli: ProcessManifest', function() {
   });
 
   it('generates manifest.json file', function() {
-    return GenerateManifestHelper('fixtures')
+    return GenerateManifestHelper()
       .then(function(result) {
         assert.deepEqual(result.files, ['manifest.json']);
         return path.join(result.directory, result.files[0]);
