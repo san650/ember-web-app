@@ -23,7 +23,7 @@ describe('Broccoli: ProcessManifest', function() {
   it('generates manifest.json file', function() {
     return GenerateManifestHelper()
       .then(function(result) {
-        assert.deepEqual(result.files, ['manifest.json']);
+        assert.deepEqual(result.files, ['manifest.ember-web-app.json']);
         return path.join(result.directory, result.files[0]);
       })
       .then(readManifest)
