@@ -11,7 +11,7 @@ describe('Unit: androidLinkTags()', function() {
       rootURL: '/foo/bar/'
     };
     var expected = [
-      '<link rel="manifest" href="/foo/bar/manifest.json">'
+      '<link rel="manifest" href="/foo/bar/manifest.ember-web-app.json">'
     ];
 
     assert.deepEqual(androidLinkTags(manifest, config), expected);

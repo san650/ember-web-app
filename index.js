@@ -61,9 +61,5 @@ module.exports = {
     } catch(e) {
       return {};
     }
-  },
-
-  postBuild(results) {
-    fs.renameSync(results.directory + '/' + require('./lib/constants').TEMP_MANIFEST, results.directory + '/manifest.json');
   }
 };
