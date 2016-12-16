@@ -13,7 +13,7 @@ function createIndex() {
 describe('Unit: index', function() {
   describe('contentFor()', function() {
     it('returns link tag when section is "head"', function() {
-      var expected = '<link rel="manifest" href="/manifest.json">';
+      var expected = '<link rel="manifest" href="/manifest.ember-web-app.json">';
       var index = createIndex();
       index.manifestConfiguration = {};
 
@@ -27,7 +27,7 @@ describe('Unit: index', function() {
     });
 
     it('uses rootURL config', function() {
-      var expected = '<link rel="manifest" href="/foo/bar/manifest.json">';
+      var expected = '<link rel="manifest" href="/foo/bar/manifest.ember-web-app.json">';
       var index = createIndex();
       index.manifestConfiguration = {};
 

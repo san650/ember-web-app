@@ -17,7 +17,7 @@ describe('Acceptance: manifest file generation', function() {
     app = new AddonTestApp();
   });
 
-  it('generates a manifest.json file', function() {
+  it('generates a manifest.ember-web-app.json file', function() {
     return app.create('empty', {
         fixturesPath: 'node-tests/acceptance/fixtures'
       })
@@ -25,7 +25,7 @@ describe('Acceptance: manifest file generation', function() {
         return app.runEmberCommand('build');
       })
       .then(function() {
-        return readFile(app.filePath('/dist/manifest.json'), { encoding: 'utf-8' });
+        return readFile(app.filePath('/dist/manifest.ember-web-app.json'), { encoding: 'utf-8' });
       })
       .then(function(content) {
         assert.deepEqual(JSON.parse(content), {
@@ -50,7 +50,7 @@ describe('Acceptance: manifest file generation', function() {
         return app.runEmberCommand('build', '--prod');
       })
       .then(function() {
-        return readFile(app.filePath('/dist/manifest.json'), { encoding: 'utf-8' });
+        return readFile(app.filePath('/dist/manifest.ember-web-app.json'), { encoding: 'utf-8' });
       })
       .then(function(content) {
         // fingerprint images
