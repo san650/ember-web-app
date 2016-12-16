@@ -1,10 +1,20 @@
 /* jshint node: true */
 'use strict';
 
-var fs = require('fs');
+var constants = require('./lib/constants');
+var MANIFEST_TEMP_NAME = constants.MANIFEST_TEMP_NAME;
+var MANIFEST_NAME = constants.MANIFEST_NAME;
 
 module.exports = {
   name: 'ember-web-app',
+
+  shouldIncludeChildAddon: function(childAddon) {
+    if (childAddon.name === 'broccoli-asset-rev') {
+      return false;
+    }
+
+    return this._super.shouldIncludeChildAddon.apply(this, arguments);
+  },
 
   included: function(app) {
     this.app = app;
@@ -14,7 +24,7 @@ module.exports = {
 
     this.manifestConfiguration = this._getManifestConfiguration();
 
-    this._super.included(app);
+    this._super.included.apply(this, arguments);
   },
 
   treeForPublic: function() {
@@ -29,14 +39,14 @@ module.exports = {
 
     var GenerateManifest = require('./lib/broccoli/generate-manifest-json');
 
-    return new GenerateManifest(generateManifestFromConfiguration(this.manifestConfiguration));
+    return new GenerateManifest(generateManifestFromConfiguration(this.manifestConfiguration), MANIFEST_TEMP_NAME);
   },
 
   contentFor: function(section, config) {
     if (section === 'head') {
       var tags = [];
 
-      tags = tags.concat(require('./lib/android-link-tags')(this.manifestConfiguration, config));
+      tags = tags.concat(require('./lib/android-link-tags')(config, MANIFEST_NAME));
       tags = tags.concat(require('./lib/apple-link-tags')(this.manifestConfiguration, config));
 
       tags = tags.concat(require('./lib/android-meta-tags')(this.manifestConfiguration, config));
@@ -48,7 +58,7 @@ module.exports = {
 
   _configureFingerprint() {
     var configureFingerprint = require('./lib/configure-fingerprint');
-    this.app.options.fingerprint = configureFingerprint(this.app.options.fingerprint);
+    this.app.options.fingerprint = configureFingerprint(this.app.options.fingerprint, MANIFEST_TEMP_NAME);
   },
 
   _getManifestConfiguration() {

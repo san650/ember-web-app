@@ -17,57 +17,63 @@ describe('Acceptance: manifest file generation', function() {
     app = new AddonTestApp();
   });
 
-  it('generates a manifest.ember-web-app.json file', function() {
-    return app.create('empty', {
+  it('generates a manifest.json file', function() {
+    return app
+      .create('empty', {
         fixturesPath: 'node-tests/acceptance/fixtures'
       })
       .then(function() {
-        return app.runEmberCommand('build');
+        return app.runEmberCommand('build')
       })
-      .then(function() {
-        return readFile(app.filePath('/dist/manifest.ember-web-app.json'), { encoding: 'utf-8' });
-      })
-      .then(function(content) {
-        assert.deepEqual(JSON.parse(content), {
-          name: 'empty',
-          short_name: 'empty',
-          description: '',
-          start_url: '/',
-          display: 'standalone',
-          background_color: '#fff',
-          theme_color: '#fff',
-          icons: [
-          ]
-        });
-      });
+      .then(contentOf(app, 'dist/manifest.json'))
+      .then(assertJSON(app, {
+        name: 'empty',
+        short_name: 'empty',
+        description: '',
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#fff',
+        theme_color: '#fff',
+        icons: [
+        ]
+      }));
   });
 
   it('configures broccoli-asset-rev', function() {
-    return app.create('dummy', {
+    return app
+      .create('dummy', {
         fixturesPath: 'node-tests/acceptance/fixtures'
       })
       .then(function() {
-        return app.runEmberCommand('build', '--prod');
-      })
-      .then(function() {
-        return readFile(app.filePath('/dist/manifest.ember-web-app.json'), { encoding: 'utf-8' });
-      })
-      .then(function(content) {
-        // fingerprint images
-        assert.deepEqual(JSON.parse(content), {
-          icons: [
-            {
-              src: "pio-8911090226e7b5522790f1218f6924a5.png"
-            }
-          ]
+        // WORKAROUND: ember-cli-addon-tests doesn't include in the
+        // package.json packages installed with blueprint's addPackageToProject
+        // are not copied when re-generating the app with a new name
+        //
+        // See https://github.com/tomdale/ember-cli-addon-tests/issues/27
+        app.editPackageJSON(function(pkg) {
+          pkg['devDependencies']['ember-web-app-rename'] = '*';
         });
       })
       .then(function() {
-        return readFile(app.filePath('/dist/fastbootAssetMap.json'), { encoding: 'utf-8' });
+        return app.runEmberCommand('build', '--prod')
       })
-      .then(function(content) {
-        // doesn't edit other .json files
-        assert.deepEqual(JSON.parse(content), { "pio.png": "pio-0987654321.png" });
-      });
+      .then(contentOf(app, 'dist/manifest.json'))
+      .then(assertJSON(app, {
+        icons: [ { src: "pio-8911090226e7b5522790f1218f6924a5.png" } ]
+      }))
+      .then(contentOf(app, 'dist/fastbootAssetMap.json'))
+      .then(assertJSON(app, { "pio.png": "pio-0987654321.png" }));
   });
 });
+
+function contentOf(app, path) {
+  return function() {
+    return readFile(app.filePath(path), { encoding: 'utf-8' });
+  }
+}
+
+function assertJSON(app, expected) {
+  return function(actual) {
+    assert.deepEqual(JSON.parse(actual), expected, 'assert JSON');
+  };
+}

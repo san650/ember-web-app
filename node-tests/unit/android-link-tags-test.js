@@ -10,9 +10,9 @@ describe('Unit: androidLinkTags()', function() {
       rootURL: '/foo/bar/'
     };
     var expected = [
-      '<link rel="manifest" href="/foo/bar/manifest.ember-web-app.json">'
+      '<link rel="manifest" href="/foo/bar/manifest.json">'
     ];
 
-    assert.deepEqual(androidLinkTags(manifest, config), expected);
+    assert.deepEqual(androidLinkTags(config, 'manifest.json'), expected);
   });
 });

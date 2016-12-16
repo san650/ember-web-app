@@ -8,5 +8,9 @@ module.exports = {
     return {
       name: options.project.name()
     };
+  },
+
+  afterInstall: function() {
+    return this.addPackageToProject('ember-web-app-rename');
   }
 };
