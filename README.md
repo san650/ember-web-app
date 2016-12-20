@@ -25,6 +25,39 @@ Here's a brief list of the main missing features that we intend to add in the fu
 
 See the [documentation](#documentation) section below for more information.
 
+## Table of content
+
+* [Installation](#installation)
+* [Example](#example)
+* [Configuration](#configuration)
+* [API documentation](#api-documentation)
+  * [`name`](#name)
+  * [`short_name`](#short_name)
+  * [`background_color`](#background_color)
+  * [`description`](#description)
+  * [`dir`](#dir)
+  * [`display`](#display)
+  * [`icons`](#icons)
+  * [`lang`](#lang)
+  * [`orientation`](#orientation)
+  * [`prefer_related_applications`](#prefer_related_applications)
+  * [`related_applications`](#related_applications)
+  * [`scope`](#scope)
+  * [`start_url`](#start_url)
+  * [`theme_color`](#theme_color)
+  * [`apple.statusBarStyle`](#applestatusbarstyle)
+* [Development](#development)
+* [Project's health](#projects-health)
+* [License](#license)
+
+## Installation
+
+```sh
+$ ember install ember-web-app
+```
+
+This generates a config/manifest.js configuration file.
+
 ## Example
 
 Having the following configuration file `config/manifest.js`
@@ -106,14 +139,6 @@ and the following `manifest.ember-web-app.json` file
   ]
 }
 ```
-
-## Installation
-
-```sh
-$ ember install ember-web-app
-```
-
-This generates a config/manifest.js configuration file.
 
 ## Configuration
 
