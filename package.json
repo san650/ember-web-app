@@ -47,7 +47,8 @@
     "loader.js": "^4.0.1",
     "mocha": "2.5.3",
     "rsvp": "^3.3.3",
-    "strip-ansi": "^3.0.1"
+    "strip-ansi": "^3.0.1",
+    "ember-cli-internal-test-helpers": "^0.8.3"
   },
   "keywords": [
     "ember-addon",

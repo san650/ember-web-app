@@ -10,7 +10,7 @@ var expect = require('ember-cli-blueprint-test-helpers/chai').expect;
 describe('Blueprints: ember generate and destroy ember-web-app', function() {
   setupTestHooks(this);
 
-  it('ember-web-app', function() {
+  it('generates config/manifest.js file', function() {
     var args = ['ember-web-app', 'foo'];
 
     return emberNew()
