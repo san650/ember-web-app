@@ -104,7 +104,7 @@ It will generate the following meta tags
 `index.html`
 
 ```html
-<link rel="manifest" href="/manifest.ember-web-app.json">
+<link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/images/icons/android-chrome-192x192-883114367f2d72fc9a509409454a1e73.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/images/icons/android-chrome-512x512-af3d768ff652dc2be589a3c22c6dc827.png" sizes="512x512">
 <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon-36cba25bc155e8ba414265f9d85861ca.png" sizes="180x180">
@@ -114,7 +114,7 @@ It will generate the following meta tags
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 ```
 
-and the following `manifest.ember-web-app.json` file
+and the following `manifest.json` file
 
 ```json
 {
