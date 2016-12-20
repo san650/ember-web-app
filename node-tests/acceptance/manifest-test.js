@@ -64,6 +64,34 @@ describe('Acceptance: manifest file generation', function() {
       .then(contentOf(app, 'dist/fastbootAssetMap.json'))
       .then(assertJSON(app, { "pio.png": "pio-0987654321.png" }));
   });
+
+  it('renames manifest.json', function() {
+    return app
+      .create('config-name', {
+        fixturesPath: 'node-tests/acceptance/fixtures'
+      })
+      .then(function() {
+        // WORKAROUND: ember-cli-addon-tests doesn't include in the
+        // package.json packages installed with blueprint's addPackageToProject
+        // are not copied when re-generating the app with a new name
+        //
+        // See https://github.com/tomdale/ember-cli-addon-tests/issues/27
+        app.editPackageJSON(function(pkg) {
+          pkg['devDependencies']['ember-web-app-rename'] = '*';
+        });
+      })
+      .then(function() {
+        return app.runEmberCommand('build')
+      })
+      .then(contentOf(app, 'dist/my-awesome-manifest.json'))
+      .then(assertJSON(app, {
+        name: 'foo'
+      }))
+      .then(contentOf(app, 'dist/index.html'))
+      .then(function(content) {
+        assert.ok(content.indexOf('href="/my-awesome-manifest.json"') > -1, 'index.html uses name from configuration');
+      });
+  });
 });
 
 function contentOf(app, path) {

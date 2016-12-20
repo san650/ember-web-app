@@ -115,22 +115,28 @@ $ ember install ember-web-app
 
 This generates a config/manifest.js configuration file.
 
-## Development
+## Configuration
 
-```sh
-$ git clone https://github.com/san650/ember-web-app.git
-$ cd $_
-$ yarn          # (or npm install)
-$ bower install
+You can rename the manifest name in your `config/environment.js`
+
+```js
+module.exports = function(environment) {
+  var ENV = {
+    modulePrefix: 'dummy',
+    environment: environment,
+    rootURL: '/'
+    ...
+  };
+
+  ENV['ember-web-app'] = {
+    name: 'my-awesome-manifest.json'
+  };
+
+  return ENV;
+};
 ```
 
-Running tests
-
-```sh
-$ npm test
-```
-
-## Documentation
+## API documentation
 
 This Ember addon generates a [Web Application Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) at build time using the `config/manifest.js` configuration file.
 
@@ -482,6 +488,21 @@ manifest.apple = {
 | `apple`    | `<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">`
 | `ms`       | does not apply
 | `android`  | does not apply
+
+## Development
+
+```sh
+$ git clone https://github.com/san650/ember-web-app.git
+$ cd $_
+$ yarn          # (or npm install)
+$ bower install
+```
+
+Running tests
+
+```sh
+$ npm test
+```
 
 ## Project's health
 
