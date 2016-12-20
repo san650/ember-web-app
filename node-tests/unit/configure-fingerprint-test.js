@@ -1,4 +1,3 @@
-/* jshint node: true */
 'use strict';
 
 var assert = require('assert');
@@ -15,7 +14,7 @@ describe('Unit: configureFingerprint()', function() {
       replaceExtensions: ['html', 'css', 'js', 'ember-web-app.json']
     };
 
-    var actual = configureFingerprint(undefined);
+    var actual = configureFingerprint(undefined, 'manifest.ember-web-app.json');
 
     assert.deepEqual(actual, expected);
   });
@@ -32,7 +31,7 @@ describe('Unit: configureFingerprint()', function() {
       replaceExtensions: ['baz', 'ember-web-app.json']
     };
 
-    var actual = configureFingerprint(userOptions);
+    var actual = configureFingerprint(userOptions, 'manifest.ember-web-app.json');
 
     assert.deepEqual(actual, expected);
   });
@@ -47,7 +46,7 @@ describe('Unit: configureFingerprint()', function() {
       replaceExtensions: ['html', 'css', 'js', 'ember-web-app.json']
     };
 
-    var actual = configureFingerprint(userOptions);
+    var actual = configureFingerprint(userOptions, 'manifest.ember-web-app.json');
 
     assert.deepEqual(actual, expected);
   });
