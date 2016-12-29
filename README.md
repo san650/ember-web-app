@@ -46,6 +46,7 @@ See the [documentation](#documentation) section below for more information.
   * [`start_url`](#start_url)
   * [`theme_color`](#theme_color)
   * [`apple.statusBarStyle`](#applestatusbarstyle)
+  * [`apple.precomposed`](#appleprecomposed)
 * [Development](#development)
 * [Project's health](#projects-health)
 * [License](#license)
@@ -511,6 +512,31 @@ manifest.apple = {
 | ---        | ---       |
 | `manifest` | does not apply
 | `apple`    | `<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">`
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `apple.precomposed`
+
+> Adds `precomposed` suffix to apple touch icons
+
+See [Precomposed Keyword for apple touch icons](https://mathiasbynens.be/notes/touch-icons#effects)
+
+Possible values:
+  * `true` Adds precomposed suffix.
+  * `false` (default) Does not add precomposed suffix.
+
+Example
+
+```js
+manifest.apple = {
+ precomposed: 'true'
+};
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | does not apply
+| `apple`    | `<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-192x192.png" sizes="192x192">`
 | `ms`       | does not apply
 | `android`  | does not apply
 
