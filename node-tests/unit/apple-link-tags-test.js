@@ -90,4 +90,22 @@ describe('Unit: appleLinkTags()', function() {
 
     assert.deepEqual(appleLinkTags(manifest, config), expected);
   });
+
+  it('uses \'/\' as rootURL if it is undefined', function() {
+    var config = {}
+
+    var manifest = {
+      icons: [
+        {
+          src: 'bar.png'
+        }
+      ]
+    };
+
+    var expected = [
+      '<link rel="apple-touch-icon" href="/bar.png">',
+    ];
+
+    assert.deepEqual(appleLinkTags(manifest, config), expected);
+  });
 });
