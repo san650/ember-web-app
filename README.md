@@ -143,7 +143,9 @@ and the following `manifest.json` file
 
 ## Configuration
 
-You can rename the manifest name in your `config/environment.js`
+### Manifest name
+
+You can set the name of the manifest by adding a configuation option to `config/environment.js`.
 
 ```js
 module.exports = function(environment) {
@@ -159,6 +161,26 @@ module.exports = function(environment) {
   };
 
   return ENV;
+};
+```
+
+### Disable
+
+You can disable the addon by adding a configuring option to `ember-cli-build.js` build file.
+
+```js
+var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+
+module.exports = function(defaults) {
+  var options = {
+    'ember-web-app': {
+      enabled: false
+    }
+  };
+
+  var app = new EmberApp(defaults, options);
+
+  return app.toTree();
 };
 ```
 

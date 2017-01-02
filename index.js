@@ -20,11 +20,22 @@ module.exports = {
     this.app = app;
     app.options = app.options || {};
 
-    this._configureFingerprint();
+    this.addonBuildConfig = this.app.options['ember-web-app'] || {};
 
-    this.manifestConfiguration = this._getManifestConfiguration();
+    if (!this._disabled()) {
+      this._configureFingerprint();
+      this.manifestConfiguration = this._getManifestConfiguration();
+    }
 
     this._super.included.apply(this, arguments);
+  },
+
+  treeFor: function() {
+    if (this._disabled()) {
+      return;
+    }
+
+    return this._super.treeFor.apply(this, arguments);
   },
 
   treeForPublic: function() {
@@ -43,6 +54,10 @@ module.exports = {
   },
 
   contentFor: function(section, config) {
+    if (this._disabled()) {
+      return;
+    }
+
     if (section === 'head') {
       var tags = [];
 
@@ -56,12 +71,12 @@ module.exports = {
     }
   },
 
-  _configureFingerprint() {
+  _configureFingerprint: function() {
     var configureFingerprint = require('./lib/configure-fingerprint');
     this.app.options.fingerprint = configureFingerprint(this.app.options.fingerprint, MANIFEST_TEMP_NAME);
   },
 
-  _getManifestConfiguration() {
+  _getManifestConfiguration: function() {
     try {
       var path = require('path');
       var env = this.app.env;
@@ -71,5 +86,9 @@ module.exports = {
     } catch(e) {
       return {};
     }
+  },
+
+  _disabled: function() {
+    return this.addonBuildConfig.enabled === false;
   }
 };

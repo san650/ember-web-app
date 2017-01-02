@@ -1,6 +1,6 @@
 var assert = require('assert');
 var RSVP = require('rsvp');
-var readFile = RSVP.denodeify(require('fs').readFile);
+var fs = require('fs');
 var AddonTestApp = require('ember-cli-addon-tests').AddonTestApp;
 
 describe('Acceptance: manifest file generation', function() {
@@ -92,12 +92,39 @@ describe('Acceptance: manifest file generation', function() {
         assert.ok(content.indexOf('href="/my-awesome-manifest.json"') > -1, 'index.html uses name from configuration');
       });
   });
+
+  it('doesn\'t generate the manifest.json', function() {
+    return app
+      .create('disabled', {
+        fixturesPath: 'node-tests/acceptance/fixtures'
+      })
+      .then(function() {
+        // WORKAROUND: ember-cli-addon-tests doesn't include in the
+        // package.json packages installed with blueprint's addPackageToProject
+        // are not copied when re-generating the app with a new name
+        //
+        // See https://github.com/tomdale/ember-cli-addon-tests/issues/27
+        app.editPackageJSON(function(pkg) {
+          pkg['devDependencies']['ember-web-app-rename'] = '*';
+        });
+      })
+      .then(function() {
+        return app.runEmberCommand('build')
+      })
+      .then(function() {
+        assert.ok(!fs.existsSync(app.filePath('dist/manifest.json')), 'Doesn\'t generate manifest.json file');
+      })
+      .then(contentOf(app, 'dist/index.html'))
+      .then(function(content) {
+        assert.ok(!content.includes('apple-touch-icon'), 'Doesn\'t include meta tags');
+      });
+  });
 });
 
 function contentOf(app, path) {
   return function() {
-    return readFile(app.filePath(path), { encoding: 'utf-8' });
-  }
+    return fs.readFileSync(app.filePath(path), { encoding: 'utf-8' });
+  };
 }
 
 function assertJSON(app, expected) {
