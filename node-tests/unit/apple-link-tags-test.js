@@ -108,4 +108,27 @@ describe('Unit: appleLinkTags()', function() {
 
     assert.deepEqual(appleLinkTags(manifest, config), expected);
   });
+
+  it('generates icons with precomposed suffix', function() {
+    var config = {
+      rootURL: '/'
+    };
+
+    var manifest = {
+      icons: [
+        {
+          src: '/foo/bar.png'
+        }
+      ],
+      apple: {
+        precomposed: true
+      }
+    };
+
+    var expected = [
+      '<link rel="apple-touch-icon-precomposed" href="/foo/bar.png">',
+    ];
+
+    assert.deepEqual(appleLinkTags(manifest, config), expected);
+  });
 });
