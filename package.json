@@ -25,7 +25,7 @@
     "console-ui": "^1.0.2",
     "ember-ajax": "^2.0.1",
     "ember-cli": "2.8.0",
-    "ember-cli-addon-tests": "^0.4.1",
+    "ember-cli-addon-tests": "^0.4.2",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-blueprint-test-helpers": "0.13.0",
     "ember-cli-dependency-checker": "^1.2.0",

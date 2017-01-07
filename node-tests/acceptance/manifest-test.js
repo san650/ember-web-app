@@ -45,16 +45,6 @@ describe('Acceptance: manifest file generation', function() {
         fixturesPath: 'node-tests/acceptance/fixtures'
       })
       .then(function() {
-        // WORKAROUND: ember-cli-addon-tests doesn't include in the
-        // package.json packages installed with blueprint's addPackageToProject
-        // are not copied when re-generating the app with a new name
-        //
-        // See https://github.com/tomdale/ember-cli-addon-tests/issues/27
-        app.editPackageJSON(function(pkg) {
-          pkg['devDependencies']['ember-web-app-rename'] = '*';
-        });
-      })
-      .then(function() {
         return app.runEmberCommand('build', '--prod')
       })
       .then(contentOf(app, 'dist/manifest.json'))
@@ -69,16 +59,6 @@ describe('Acceptance: manifest file generation', function() {
     return app
       .create('config-name', {
         fixturesPath: 'node-tests/acceptance/fixtures'
-      })
-      .then(function() {
-        // WORKAROUND: ember-cli-addon-tests doesn't include in the
-        // package.json packages installed with blueprint's addPackageToProject
-        // are not copied when re-generating the app with a new name
-        //
-        // See https://github.com/tomdale/ember-cli-addon-tests/issues/27
-        app.editPackageJSON(function(pkg) {
-          pkg['devDependencies']['ember-web-app-rename'] = '*';
-        });
       })
       .then(function() {
         return app.runEmberCommand('build')
@@ -97,16 +77,6 @@ describe('Acceptance: manifest file generation', function() {
     return app
       .create('disabled', {
         fixturesPath: 'node-tests/acceptance/fixtures'
-      })
-      .then(function() {
-        // WORKAROUND: ember-cli-addon-tests doesn't include in the
-        // package.json packages installed with blueprint's addPackageToProject
-        // are not copied when re-generating the app with a new name
-        //
-        // See https://github.com/tomdale/ember-cli-addon-tests/issues/27
-        app.editPackageJSON(function(pkg) {
-          pkg['devDependencies']['ember-web-app-rename'] = '*';
-        });
       })
       .then(function() {
         return app.runEmberCommand('build')
