@@ -166,7 +166,7 @@ module.exports = function(environment) {
 
 ### Disable
 
-You can disable the addon by adding a configuring option to `ember-cli-build.js` build file.
+You can disable the addon by adding a configuration option to `ember-cli-build.js` build file.
 
 ```js
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
