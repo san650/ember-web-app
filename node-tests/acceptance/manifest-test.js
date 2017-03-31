@@ -89,6 +89,20 @@ describe('Acceptance: manifest file generation', function() {
         assert.ok(!content.includes('apple-touch-icon'), 'Doesn\'t include meta tags');
       });
   });
+
+  it('uses rootURL configuration', function() {
+    return app
+      .create('config-root-url', {
+        fixturesPath: 'node-tests/acceptance/fixtures'
+      })
+      .then(function() {
+        return app.runEmberCommand('build')
+      })
+      .then(contentOf(app, 'dist/index.html'))
+      .then(function(content) {
+        assert.ok(content.indexOf('href="/foo/bar/baz/manifest.json"') > -1, 'index.html uses rootURL from configuration');
+      });
+  });
 });
 
 function contentOf(app, path) {
