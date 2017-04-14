@@ -317,6 +317,8 @@ Possible values:
   * minimal-ui
   * browser
 
+The default value for `display` is `browser` when is not defined.
+
 Example
 
 ```js
@@ -326,9 +328,11 @@ manifest.display = "fullscreen";
 | Target     | Generates |
 | ---        | ---       |
 | `manifest` | `{ "display": "fullscreen" }`
-| `apple`    | does not apply
+| `apple`    | `<meta name="apple-mobile-web-app-capable" content="yes">`
 | `ms`       | does not apply
 | `android`  | does not apply
+
+__Note that for iOS the meta tag will be render with value `yes` only when display is `fullscreen` or `standalone`.__
 
 #### `icons`
 
