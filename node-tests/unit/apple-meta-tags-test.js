@@ -4,13 +4,57 @@ var assert = require('assert');
 var appleMetaTags = require('../../lib/apple-meta-tags');
 
 describe('Unit: appleMetaTags()', function() {
-  it('returns `web-app-capable` meta tag', function() {
-    var manifest = {};
+  it('returns `web-app-capable` meta tag when display mode is fullscreen', function() {
+    var manifest = {
+      display: 'fullscreen'
+    };
     var expected = '<meta name="apple-mobile-web-app-capable" content="yes">';
 
     var actual = appleMetaTags(manifest);
 
     assert.ok(actual.indexOf(expected) > -1);
+  });
+
+  it('returns `web-app-capable` meta tag when display mode is standalone', function() {
+    var manifest = {
+      display: 'standalone'
+    };
+    var expected = '<meta name="apple-mobile-web-app-capable" content="yes">';
+
+    var actual = appleMetaTags(manifest);
+
+    assert.ok(actual.indexOf(expected) > -1);
+  });
+
+  it('does not return `web-app-capable` meta tag when display mode is minimal-ui', function() {
+    var manifest = {
+      display: 'minimal-ui'
+    };
+    var notExpected = '<meta name="apple-mobile-web-app-capable" content="yes">';
+
+    var actual = appleMetaTags(manifest);
+
+    assert.ok(actual.indexOf(notExpected) === -1);
+  });
+
+  it('does not return `web-app-capable` meta tag when display mode is browser', function() {
+    var manifest = {
+      display: 'browser'
+    };
+    var notExpected = '<meta name="apple-mobile-web-app-capable" content="yes">';
+
+    var actual = appleMetaTags(manifest);
+
+    assert.ok(actual.indexOf(notExpected) === -1);
+  });
+
+  it('does not return `web-app-capable` meta tag when display mode is not defined', function() {
+    var manifest = {};
+    var notExpected = '<meta name="apple-mobile-web-app-capable" content="yes">';
+
+    var actual = appleMetaTags(manifest);
+
+    assert.ok(actual.indexOf(notExpected) === -1);
   });
 
   it('returns `web-app-title` meta tag', function() {

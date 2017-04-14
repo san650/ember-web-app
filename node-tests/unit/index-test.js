@@ -10,7 +10,9 @@ function createIndex() {
     {},
     pristineIndex,
     {
-      manifestConfiguration: {},
+      manifestConfiguration: {
+        display: 'standalone'
+      },
       _disabled: function() {
         return false
       }
