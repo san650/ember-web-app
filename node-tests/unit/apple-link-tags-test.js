@@ -131,4 +131,23 @@ describe('Unit: appleLinkTags()', function() {
 
     assert.deepEqual(appleLinkTags(manifest, config), expected);
   });
+
+  it('does not generate apple link tags when apple is false', function() {
+    var config = {
+      rootURL: '/'
+    };
+
+    var manifest = {
+      icons: [
+        {
+          src: '/foo/bar.png'
+        }
+      ],
+      apple: false
+    };
+
+    var expected = [];
+
+    assert.deepEqual(appleLinkTags(manifest, config), expected);
+  });
 });

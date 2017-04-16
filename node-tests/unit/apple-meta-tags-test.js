@@ -96,4 +96,16 @@ describe('Unit: appleMetaTags()', function() {
 
     assert.ok(actual.indexOf(expected) > -1);
   });
+
+  it('returns empty array when apple is false', function() {
+    var manifest = {
+      display: 'fullscreen',
+      apple: false
+    };
+    var expected = [];
+
+    var actual = appleMetaTags(manifest);
+
+    assert.deepEqual(actual, expected);
+  });
 });
