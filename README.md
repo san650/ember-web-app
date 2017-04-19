@@ -45,8 +45,9 @@ See the [documentation](#documentation) section below for more information.
   * [`scope`](#scope)
   * [`start_url`](#start_url)
   * [`theme_color`](#theme_color)
-  * [`apple.statusBarStyle`](#applestatusbarstyle)
-  * [`apple.precomposed`](#appleprecomposed)
+  * [`apple`](#apple)
+    * [`apple.statusBarStyle`](#applestatusbarstyle)
+    * [`apple.precomposed`](#appleprecomposed)
 * [Development](#development)
 * [Project's health](#projects-health)
 * [License](#license)
@@ -512,6 +513,28 @@ manifest.theme_color = "aliceblue";
 | `android`  | `<meta name="theme-color" content="aliceblue">`
 
 ### Vendor specific properties (non-standard)
+
+#### `apple`
+
+> Turns on/off the generation of apple specific meta and link tags.
+
+Possible values:
+  * `true` Turn on. This is the default value.
+  * `false` Turn off.
+  * An object with custom settings (see the settings below)
+
+Example
+
+```js
+manifest.apple = false;
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | `{ "apple": false }`
+| `apple`    | __returns an empty string__
+| `ms`       | does not apply
+| `android`  | does not apply
 
 #### `apple.statusBarStyle`
 
