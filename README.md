@@ -352,7 +352,7 @@ manifest.lang = "es-UY";
 
 | Target     | Generates |
 | ---        | ---       |
-| `manifest` | `{ "lang": "en-UY" }`
+| `manifest` | `{ "lang": "es-UY" }`
 | `apple`    | does not apply
 | `ms`       | does not apply
 | `android`  | does not apply
