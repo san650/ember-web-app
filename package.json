@@ -16,7 +16,7 @@
   },
   "repository": "https://github.com/san650/ember-web-app.git",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 4"
   },
   "author": "Santiago Ferreira",
   "license": "MIT",
