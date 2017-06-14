@@ -150,4 +150,27 @@ describe('Unit: appleLinkTags()', function() {
 
     assert.deepEqual(appleLinkTags(manifest, config), expected);
   });
+
+  it('respects absolute urls', function() {
+    var config = {
+      rootURL: '/qux/'
+    };
+    var manifest = {
+      icons: [
+        {
+          src: 'http://www.example.com/foo/bar.png'
+        },
+        {
+          src: 'https://www.example.com/bar/baz.png'
+        }
+      ]
+    };
+
+    var expected = [
+      '<link rel="apple-touch-icon" href="http://www.example.com/foo/bar.png">',
+      '<link rel="apple-touch-icon" href="https://www.example.com/bar/baz.png">'
+    ];
+
+    assert.deepEqual(appleLinkTags(manifest, config), expected);
+  });
 });
