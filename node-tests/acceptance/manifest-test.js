@@ -21,8 +21,6 @@ describe('Acceptance: manifest file generation', function() {
     return app
       .create('empty', {
         fixturesPath: 'node-tests/acceptance/fixtures',
-        // FIXME test fails in travis with latest version of ember-data. Seems like a bug in ember-cli-addon-tests
-        emberDataVersion: '2.12.1'
       })
       .then(function() {
         return app.runEmberCommand('build')
@@ -45,8 +43,6 @@ describe('Acceptance: manifest file generation', function() {
     return app
       .create('dummy', {
         fixturesPath: 'node-tests/acceptance/fixtures',
-        // FIXME test fails in travis with latest version of ember-data. Seems like a bug in ember-cli-addon-tests
-        emberDataVersion: '2.12.1'
       })
       .then(function() {
         return app.runEmberCommand('build', '--prod')
@@ -63,8 +59,6 @@ describe('Acceptance: manifest file generation', function() {
     return app
       .create('config-name', {
         fixturesPath: 'node-tests/acceptance/fixtures',
-        // FIXME test fails in travis with latest version of ember-data. Seems like a bug in ember-cli-addon-tests
-        emberDataVersion: '2.12.1'
       })
       .then(function() {
         return app.runEmberCommand('build')
@@ -83,8 +77,6 @@ describe('Acceptance: manifest file generation', function() {
     return app
       .create('disabled', {
         fixturesPath: 'node-tests/acceptance/fixtures',
-        // FIXME test fails in travis with latest version of ember-data. Seems like a bug in ember-cli-addon-tests
-        emberDataVersion: '2.12.1'
       })
       .then(function() {
         return app.runEmberCommand('build')
@@ -102,8 +94,6 @@ describe('Acceptance: manifest file generation', function() {
     return app
       .create('config-root-url', {
         fixturesPath: 'node-tests/acceptance/fixtures',
-        // FIXME test fails in travis with latest version of ember-data. Seems like a bug in ember-cli-addon-tests
-        emberDataVersion: '2.12.1'
       })
       .then(function() {
         return app.runEmberCommand('build')
