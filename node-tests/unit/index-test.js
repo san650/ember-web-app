@@ -71,20 +71,4 @@ describe('Unit: index', function() {
       assert.ok(!index.contentFor('head', { rootURL: '/' }), 'Doesn\'t include meta tags when disabled');
     });
   });
-
-  describe('treeForPublic()', function() {
-    it('writes manifest validation warnings to the console', function() {
-      var expected = 'WARNING: MANIFEST VALIDATION: Invalid "name" value type "number". Expected a string or undefined.';
-      var index = createIndex();
-
-      index.ui = new MockUI();
-      index.manifestConfiguration = {
-        name: 123
-      };
-
-      index.treeForPublic();
-
-      assert.equal(stripAnsi(index.ui.output).trim(), expected);
-    });
-  });
 });
