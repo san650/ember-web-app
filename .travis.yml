@@ -10,6 +10,7 @@ cache:
 
 env:
   - EMBER_TRY_SCENARIO=ember-default
+  - EMBER_TRY_SCENARIO=node-tests
 
 matrix:
   fast_finish: true

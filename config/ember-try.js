@@ -9,7 +9,7 @@ module.exports = {
     },
     {
       name: 'node-tests',
-      command: 'npm run nodetest',
+      command: 'npm run node-test',
       npm: {
         devDependencies: {}
       }
