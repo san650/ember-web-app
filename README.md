@@ -357,6 +357,11 @@ icons: [
     src: '/bar/baz.png',
     sizes: '280x280',
     targets: ['apple']  // non-standard property
+  },
+  {
+    src: '/bar/fav.png',
+    sizes: '32x32',
+    targets: ['favicon']
   }
 ];
 ```
@@ -367,6 +372,7 @@ icons: [
 | `apple`    | `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="180x180">` `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="280x280">`
 | `ms`       | does not apply (for now)
 | `android`  | does not apply
+| `favicon`  | `<link rel="icon" href="/bar/fav.png" sizes="32x32">`
 
 #### `lang`
 
