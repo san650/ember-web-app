@@ -63,6 +63,7 @@ module.exports = {
 
       tags = tags.concat(require('./lib/android-link-tags')(config, MANIFEST_NAME));
       tags = tags.concat(require('./lib/apple-link-tags')(this.manifestConfiguration, config));
+      tags = tags.concat(require('./lib/favicon-link-tags')(this.manifestConfiguration, config));
 
       tags = tags.concat(require('./lib/android-meta-tags')(this.manifestConfiguration, config));
       tags = tags.concat(require('./lib/apple-meta-tags')(this.manifestConfiguration, config));
