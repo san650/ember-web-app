@@ -48,6 +48,7 @@ See the [documentation](#documentation) section below for more information.
   * [`apple`](#apple)
     * [`apple.statusBarStyle`](#applestatusbarstyle)
     * [`apple.precomposed`](#appleprecomposed)
+    * [`apple.formatDetection`](#appleformatdetection)
 * [Development](#development)
 * [Project's health](#projects-health)
 * [License](#license)
@@ -592,6 +593,33 @@ manifest.apple = {
 | ---        | ---       |
 | `manifest` | does not apply
 | `apple`    | `<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-192x192.png" sizes="192x192">`
+| `ms`       | does not apply
+| `android`  | does not apply
+
+#### `apple.formatDetection`
+
+> Adds `format-detection` meta tag if needed
+
+See [Safari HTML Reference](https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html#//apple_ref/doc/uid/TP40008193-SW5)
+
+Possible values:
+  * An object with following settings
+    * `telephone: false` Disables automatic phone number detection.
+
+Example
+
+```js
+manifest.apple = {
+ formatDetection: {
+   telephone: false
+ }
+};
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | does not apply
+| `apple`    | `<meta name="format-detection" content="telephone=no">`
 | `ms`       | does not apply
 | `android`  | does not apply
 

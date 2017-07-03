@@ -108,4 +108,30 @@ describe('Unit: appleMetaTags()', function() {
 
     assert.deepEqual(actual, expected);
   });
+
+  it('returns `format-detection` meta tag with disabled telephone', function() {
+    var manifest = {
+      apple: {
+        formatDetection: {
+          telephone: false
+        }
+      }
+    };
+    var expected = '<meta name="format-detection" content="telephone=no">';
+
+    var actual = appleMetaTags(manifest);
+
+    assert.ok(actual.indexOf(expected) > -1);
+  });
+
+  it("doesn't include `format-detection` when format detection is not provided", function() {
+    var manifest = {
+      apple: {}
+    };
+    var notExpected = 'format-detection';
+
+    var actual = JSON.stringify(appleMetaTags(manifest));
+
+    assert.ok(!actual.includes(notExpected));
+  });
 });
