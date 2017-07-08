@@ -11,6 +11,6 @@ module.exports = {
   },
 
   afterInstall: function() {
-    return this.addPackageToProject('ember-web-app-rename', '^1.0.0');
+    return this.removePackageFromProject('ember-web-app-rename');
   }
 };

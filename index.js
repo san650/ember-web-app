@@ -1,9 +1,7 @@
 /* eslint-env node */
 'use strict';
 
-var constants = require('./lib/constants');
-var MANIFEST_TEMP_NAME = constants.MANIFEST_TEMP_NAME;
-var MANIFEST_NAME = constants.MANIFEST_NAME;
+var MANIFEST_NAME = "manifest.webmanifest";
 
 module.exports = {
   name: 'ember-web-app',
@@ -50,7 +48,7 @@ module.exports = {
 
     var GenerateManifest = require('./lib/broccoli/generate-manifest-json');
 
-    return new GenerateManifest(generateManifestFromConfiguration(this.manifestConfiguration), MANIFEST_TEMP_NAME);
+    return new GenerateManifest(generateManifestFromConfiguration(this.manifestConfiguration), MANIFEST_NAME);
   },
 
   contentFor: function(section, config) {
@@ -74,7 +72,7 @@ module.exports = {
 
   _configureFingerprint: function() {
     var configureFingerprint = require('./lib/configure-fingerprint');
-    this.app.options.fingerprint = configureFingerprint(this.app.options.fingerprint, MANIFEST_TEMP_NAME);
+    this.app.options.fingerprint = configureFingerprint(this.app.options.fingerprint, MANIFEST_NAME);
   },
 
   _getManifestConfiguration: function() {
