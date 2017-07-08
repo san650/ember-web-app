@@ -10,11 +10,10 @@ describe('Unit: configureFingerprint()', function() {
 
   it('returns safe configuration when options is undefined', function() {
     var expected = {
-      exclude: ['manifest.ember-web-app.json'],
-      replaceExtensions: ['html', 'css', 'js', 'ember-web-app.json']
+      replaceExtensions: ['html', 'css', 'js', 'webmanifest']
     };
 
-    var actual = configureFingerprint(undefined, 'manifest.ember-web-app.json');
+    var actual = configureFingerprint(undefined, 'manifest.webmanifest');
 
     assert.deepEqual(actual, expected);
   });
@@ -27,11 +26,11 @@ describe('Unit: configureFingerprint()', function() {
     };
     var expected = {
       prepend: 'prefix',
-      exclude: ['foo', 'bar', 'manifest.ember-web-app.json'],
-      replaceExtensions: ['baz', 'ember-web-app.json']
+      exclude: ['foo', 'bar'],
+      replaceExtensions: ['baz', 'webmanifest']
     };
 
-    var actual = configureFingerprint(userOptions, 'manifest.ember-web-app.json');
+    var actual = configureFingerprint(userOptions, 'manifest.webmanifest');
 
     assert.deepEqual(actual, expected);
   });
@@ -42,11 +41,10 @@ describe('Unit: configureFingerprint()', function() {
     };
     var expected = {
       prepend: 'prefix',
-      exclude: ['manifest.ember-web-app.json'],
-      replaceExtensions: ['html', 'css', 'js', 'ember-web-app.json']
+      replaceExtensions: ['html', 'css', 'js', 'webmanifest']
     };
 
-    var actual = configureFingerprint(userOptions, 'manifest.ember-web-app.json');
+    var actual = configureFingerprint(userOptions, 'manifest.webmanifest');
 
     assert.deepEqual(actual, expected);
   });

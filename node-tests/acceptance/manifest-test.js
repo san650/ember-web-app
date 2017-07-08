@@ -85,6 +85,25 @@ describe('Acceptance: manifest file generation', function() {
         assert.ok(content.indexOf('href="/foo/bar/baz/manifest.webmanifest"') > -1, 'index.html uses rootURL from configuration');
       });
   });
+
+  it('uses fingerprint configuration for manifest', function() {
+    return app
+      .create('broccoli-asset-rev', {
+        fixturesPath: 'node-tests/acceptance/fixtures',
+      })
+      .then(function() {
+        return app.runEmberCommand('build', '--prod')
+      })
+      .then(contentOf(app, 'dist/index.html'))
+      .then(function(content) {
+        assert.ok(content.indexOf('href="https://www.example.com/manifest-ce65942fa306b3b532ff17cf85454f3d.webmanifest"') > -1, 'checksum fingerprint is added to manifest.webmanifest file');
+        assert.ok(content.indexOf('href="https://www.example.com/pio-8911090226e7b5522790f1218f6924a5.png"') > -1, 'checksum fingerprint is added to image file');
+      })
+      .then(contentOf(app, 'dist/manifest-ce65942fa306b3b532ff17cf85454f3d.webmanifest'))
+      .then(assertJSON(app, {
+        icons: [ { src: "https://www.example.com/pio-8911090226e7b5522790f1218f6924a5.png" } ]
+      }));
+  });
 });
 
 function contentOf(app, path) {
