@@ -22,7 +22,7 @@ function createIndex() {
 describe('Unit: index', function() {
   describe('contentFor()', function() {
     it('returns link tag when section is "head"', function() {
-      var expected = '<link rel="manifest" href="/manifest.json">';
+      var expected = '<link rel="manifest" href="/manifest.webmanifest">';
       var index = createIndex();
 
       assert.ok(index.contentFor('head', { rootURL: '/' }).includes(expected));
@@ -35,7 +35,7 @@ describe('Unit: index', function() {
     });
 
     it('uses rootURL config', function() {
-      var expected = '<link rel="manifest" href="/foo/bar/manifest.json">';
+      var expected = '<link rel="manifest" href="/foo/bar/manifest.webmanifest">';
       var index = createIndex();
 
       assert.ok(index.contentFor('head', { rootURL: '/foo/bar/' }).includes(expected));

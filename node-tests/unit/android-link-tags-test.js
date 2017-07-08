@@ -8,10 +8,10 @@ describe('Unit: androidLinkTags()', function() {
     var manifest = {};
     var config = {};
     var expected = [
-      '<link rel="manifest" href="/manifest.json">'
+      '<link rel="manifest" href="/manifest.webmanifest">'
     ];
 
-    assert.deepEqual(androidLinkTags(config, 'manifest.json'), expected);
+    assert.deepEqual(androidLinkTags(config, 'manifest.webmanifest'), expected);
   });
 
   it('uses rootURL if defined', function() {
@@ -20,24 +20,9 @@ describe('Unit: androidLinkTags()', function() {
       rootURL: '/foo/bar/'
     };
     var expected = [
-      '<link rel="manifest" href="/foo/bar/manifest.json">'
+      '<link rel="manifest" href="/foo/bar/manifest.webmanifest">'
     ];
 
-    assert.deepEqual(androidLinkTags(config, 'manifest.json'), expected);
-  });
-
-  it('uses name from configuration', function() {
-    var manifest = {};
-    var config = {
-      rootURL: '/foo/bar/',
-      'ember-web-app': {
-        name: 'other-name.foo'
-      }
-    };
-    var expected = [
-      '<link rel="manifest" href="/foo/bar/other-name.foo">'
-    ];
-
-    assert.deepEqual(androidLinkTags(config, 'manifest.json'), expected);
+    assert.deepEqual(androidLinkTags(config, 'manifest.webmanifest'), expected);
   });
 });

@@ -12,7 +12,7 @@ describe('Broccoli: ProcessManifest', function() {
     fixturePath: __dirname,
 
     subject: function() {
-      return new GenerateManifest({ foo: 'bar', apple: 'baz', ms: 'qux' }, 'manifest.json');
+      return new GenerateManifest({ foo: 'bar', apple: 'baz', ms: 'qux' }, 'manifest.webmanifest');
     },
   });
 
@@ -20,10 +20,10 @@ describe('Broccoli: ProcessManifest', function() {
     return cleanupBuilders();
   });
 
-  it('generates manifest.json file', function() {
+  it('generates manifest.webmanifest file', function() {
     return GenerateManifestHelper()
       .then(function(result) {
-        assert.deepEqual(result.files, ['manifest.json']);
+        assert.deepEqual(result.files, ['manifest.webmanifest']);
         return path.join(result.directory, result.files[0]);
       })
       .then(readManifest)

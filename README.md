@@ -30,6 +30,8 @@ See the [documentation](#documentation) section below for more information.
 * [Installation](#installation)
 * [Example](#example)
 * [Configuration](#configuration)
+  * [Disable](#disable)
+  * [Fingerprint](#fingerprint)
 * [API documentation](#api-documentation)
   * [`name`](#name)
   * [`short_name`](#short_name)
@@ -107,7 +109,7 @@ It will generate the following meta tags
 `index.html`
 
 ```html
-<link rel="manifest" href="/manifest.json">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/images/icons/android-chrome-192x192-883114367f2d72fc9a509409454a1e73.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/images/icons/android-chrome-512x512-af3d768ff652dc2be589a3c22c6dc827.png" sizes="512x512">
 <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon-36cba25bc155e8ba414265f9d85861ca.png" sizes="180x180">
@@ -117,7 +119,7 @@ It will generate the following meta tags
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 ```
 
-and the following `manifest.json` file
+and the following `manifest.webmanifest` file
 
 ```json
 {
@@ -145,27 +147,6 @@ and the following `manifest.json` file
 
 ## Configuration
 
-### Manifest name
-
-You can set the name of the manifest by adding a configuation option to `config/environment.js`.
-
-```js
-module.exports = function(environment) {
-  var ENV = {
-    modulePrefix: 'dummy',
-    environment: environment,
-    rootURL: '/'
-    ...
-  };
-
-  ENV['ember-web-app'] = {
-    name: 'my-awesome-manifest.json'
-  };
-
-  return ENV;
-};
-```
-
 ### Disable
 
 You can disable the addon by adding a configuration option to `ember-cli-build.js` build file.
@@ -185,6 +166,34 @@ module.exports = function(defaults) {
   return app.toTree();
 };
 ```
+
+### Fingerprint
+
+You can add fingerprint checksum to your manifest.webmanifest file by configuring [broccoli-asset-rev](https://github.com/rickharrison/broccoli-asset-rev).
+
+The following example prepends with a custom domain and adds fingerprint checksum to the manifest.webmanifest file.
+
+`ember-cli-build.js`
+
+```js
+var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+
+module.exports = function(defaults) {
+  var defaultExtensions = ['js', 'css', 'png', 'jpg', 'gif', 'map'];
+  var options = {
+    fingerprint: {
+      extensions: defaultExtensions.concat(['webmanifest']),
+      prepend: 'https://www.example.com/'
+    }
+  };
+
+  var app = new EmberApp(defaults, options);
+
+  return app.toTree();
+};
+```
+
+Note that the `replaceExtensions` configuration from `broccoli-asset-rev` is updated internally by `ember-web-app` so you don't have to configure yourself on your project.
 
 ## API documentation
 

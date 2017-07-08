@@ -21,9 +21,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "npm run browser-test && npm run node-test",
+    "test": "ember try:each",
     "node-test": "mocha --recursive node-tests",
-    "browser-test": "ember try:each",
     "fast-test": "SKIP_ACCEPTANCE=true npm run node-test"
   },
   "dependencies": {
