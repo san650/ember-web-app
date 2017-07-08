@@ -1,12 +1,15 @@
 /* eslint-env node */
 'use strict';
 
-var MANIFEST_NAME = "manifest.webmanifest";
+const path = require('path');
+const getManifestConfiguration = require('./lib/get-manifest-configuration');
+
+const MANIFEST_NAME = 'manifest.webmanifest';
 
 module.exports = {
   name: 'ember-web-app',
 
-  shouldIncludeChildAddon: function(childAddon) {
+  shouldIncludeChildAddon(childAddon) {
     if (childAddon.name === 'broccoli-asset-rev') {
       return false;
     }
@@ -14,7 +17,7 @@ module.exports = {
     return this._super.shouldIncludeChildAddon.apply(this, arguments);
   },
 
-  included: function(app) {
+  included(app) {
     this.app = app;
     app.options = app.options || {};
 
@@ -22,13 +25,13 @@ module.exports = {
 
     if (!this._disabled()) {
       this._configureFingerprint();
-      this.manifestConfiguration = this._getManifestConfiguration();
+      this.manifestConfiguration = getManifestConfiguration(this.app.project, this.app.env);
     }
 
     this._super.included.apply(this, arguments);
   },
 
-  treeFor: function() {
+  treeFor() {
     if (this._disabled()) {
       return;
     }
@@ -36,28 +39,24 @@ module.exports = {
     return this._super.treeFor.apply(this, arguments);
   },
 
-  treeForPublic: function() {
-    var generateManifestFromConfiguration = require('./lib/generate-manifest-from-configuration');
-    var validate = require('web-app-manifest-validator');
-    var manifest = generateManifestFromConfiguration(this.manifestConfiguration);
-    var ui = this.ui;
+  treeForPublic() {
+    const GenerateManifest = require('./lib/broccoli/generate-manifest-json');
 
-    validate(manifest).forEach(function(error) {
-      ui.writeWarnLine('MANIFEST VALIDATION: ' + error);
+    return new GenerateManifest(path.join(this.app.project.root, 'config'), {
+      manifestName: MANIFEST_NAME,
+      project: this.app.project,
+      env: this.app.env,
+      ui: this.ui
     });
-
-    var GenerateManifest = require('./lib/broccoli/generate-manifest-json');
-
-    return new GenerateManifest(generateManifestFromConfiguration(this.manifestConfiguration), MANIFEST_NAME);
   },
 
-  contentFor: function(section, config) {
+  contentFor(section, config) {
     if (this._disabled()) {
       return;
     }
 
     if (section === 'head') {
-      var tags = [];
+      let tags = [];
 
       tags = tags.concat(require('./lib/android-link-tags')(config, MANIFEST_NAME));
       tags = tags.concat(require('./lib/apple-link-tags')(this.manifestConfiguration, config));
@@ -70,24 +69,12 @@ module.exports = {
     }
   },
 
-  _configureFingerprint: function() {
-    var configureFingerprint = require('./lib/configure-fingerprint');
+  _configureFingerprint() {
+    let configureFingerprint = require('./lib/configure-fingerprint');
     this.app.options.fingerprint = configureFingerprint(this.app.options.fingerprint, MANIFEST_NAME);
   },
 
-  _getManifestConfiguration: function() {
-    try {
-      var path = require('path');
-      var env = this.app.env;
-      var appConfig = this.app.project.config(env);
-
-      return require(path.join(this.app.project.root, 'config/manifest.js'))(env, appConfig);
-    } catch(e) {
-      return {};
-    }
-  },
-
-  _disabled: function() {
+  _disabled() {
     return this.addonBuildConfig.enabled === false;
   }
 };
