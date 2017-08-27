@@ -96,10 +96,10 @@ describe('Acceptance: manifest file generation', function() {
       })
       .then(contentOf(app, 'dist/index.html'))
       .then(function(content) {
-        assert.ok(content.indexOf('href="https://www.example.com/manifest-ce65942fa306b3b532ff17cf85454f3d.webmanifest"') > -1, 'checksum fingerprint is added to manifest.webmanifest file');
+        assert.ok(content.indexOf('href="https://www.example.com/manifest-f105f80557272f93397e34ea016e172d.webmanifest"') > -1, 'checksum fingerprint is added to manifest.webmanifest file');
         assert.ok(content.indexOf('href="https://www.example.com/pio-8911090226e7b5522790f1218f6924a5.png"') > -1, 'checksum fingerprint is added to image file');
       })
-      .then(contentOf(app, 'dist/manifest-ce65942fa306b3b532ff17cf85454f3d.webmanifest'))
+      .then(contentOf(app, 'dist/manifest-f105f80557272f93397e34ea016e172d.webmanifest'))
       .then(assertJSON(app, {
         icons: [ { src: "https://www.example.com/pio-8911090226e7b5522790f1218f6924a5.png" } ]
       }));
