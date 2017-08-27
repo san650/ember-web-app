@@ -638,7 +638,6 @@ manifest.apple = {
 $ git clone https://github.com/san650/ember-web-app.git
 $ cd $_
 $ yarn          # (or npm install)
-$ bower install
 ```
 
 Running tests
