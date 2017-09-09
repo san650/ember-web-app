@@ -27,7 +27,6 @@ describe('Unit: index', function() {
 
       assert.ok(index.contentFor('head', { rootURL: '/' }).includes(expected));
     });
-
     it('returns empty when section is other than "head"', function() {
       var index = createIndex();
 

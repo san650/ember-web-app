@@ -42,8 +42,10 @@ module.exports = {
   },
 
   treeForPublic() {
+    const configPath = path.join(this.app.project.root, 'config');
+
     const GenerateManifest = require('./lib/broccoli/generate-manifest-json');
-    const manifest = new GenerateManifest(path.join(this.app.project.root, 'config'), {
+    const manifest = new GenerateManifest(configPath, {
       manifestName: MANIFEST_NAME,
       project: this.app.project,
       env: this.app.env,
@@ -51,7 +53,7 @@ module.exports = {
     });
 
     const GenerateBrowserconfig = require('./lib/broccoli/generate-browserconfig-xml');
-    const browserconfig = new GenerateBrowserconfig(path.join(this.app.project.root, 'config'), {
+    const browserconfig = new GenerateBrowserconfig(configPath, {
       browserconfigName: BROWSERCONFIG_NAME,
       project: this.app.project,
       env: this.app.env,
@@ -85,13 +87,11 @@ module.exports = {
     let configureFingerprint = require('./lib/configure-fingerprint');
 
     this.app.options.fingerprint = configureFingerprint(
-      this.app.options.fingerprint,
-      MANIFEST_NAME
+      this.app.options.fingerprint, MANIFEST_NAME
     );
 
     this.app.options.fingerprint = configureFingerprint(
-      this.app.options.fingerprint,
-      BROWSERCONFIG_NAME
+      this.app.options.fingerprint, BROWSERCONFIG_NAME
     );
   },
 
