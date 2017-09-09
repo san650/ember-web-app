@@ -75,6 +75,7 @@ module.exports = {
 
       tags = tags.concat(require('./lib/android-meta-tags')(this.manifestConfiguration, config));
       tags = tags.concat(require('./lib/apple-meta-tags')(this.manifestConfiguration, config));
+      tags = tags.concat(require('./lib/ms-meta-tags')(config, BROWSERCONFIG_NAME));
 
       return tags.join('\n');
     }
@@ -82,7 +83,16 @@ module.exports = {
 
   _configureFingerprint() {
     let configureFingerprint = require('./lib/configure-fingerprint');
-    this.app.options.fingerprint = configureFingerprint(this.app.options.fingerprint, MANIFEST_NAME);
+
+    this.app.options.fingerprint = configureFingerprint(
+      this.app.options.fingerprint,
+      MANIFEST_NAME
+    );
+
+    this.app.options.fingerprint = configureFingerprint(
+      this.app.options.fingerprint,
+      BROWSERCONFIG_NAME
+    );
   },
 
   _disabled() {
