@@ -42,12 +42,14 @@ module.exports = {
   treeForPublic() {
     const GenerateManifest = require('./lib/broccoli/generate-manifest-json');
 
-    return new GenerateManifest(path.join(this.app.project.root, 'config'), {
+    const tree = new GenerateManifest(path.join(this.app.project.root, 'config'), {
       manifestName: MANIFEST_NAME,
       project: this.app.project,
       env: this.app.env,
       ui: this.ui
     });
+    console.log(tree);
+    return tree;
   },
 
   contentFor(section, config) {
