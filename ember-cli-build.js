@@ -5,6 +5,10 @@ module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     'ember-cli-babel': {
       includePolyfill: true
+    },
+    fingerprint: {
+      extensions: ['js', 'css', 'png', 'webmanifest'],
+      prepend: 'https://www.example.com/'
     }
   });
 

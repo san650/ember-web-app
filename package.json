@@ -30,7 +30,8 @@
     "broccoli-caching-writer": "^3.0.3",
     "ember-cli-babel": "^6.0.0",
     "object-assign": "^4.1.1",
-    "web-app-manifest-validator": "^1.0.0"
+    "web-app-manifest-validator": "^1.0.0",
+    "xmlbuilder": "^9.0.4"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.5.0",

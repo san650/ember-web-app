@@ -3,8 +3,10 @@
 
 const path = require('path');
 const getManifestConfiguration = require('./lib/get-manifest-configuration');
+const BroccoliMergeTrees = require('broccoli-merge-trees');
 
 const MANIFEST_NAME = 'manifest.webmanifest';
+const BROWSERCONFIG_NAME = 'browserconfig.xml';
 
 module.exports = {
   name: 'ember-web-app',
@@ -41,15 +43,22 @@ module.exports = {
 
   treeForPublic() {
     const GenerateManifest = require('./lib/broccoli/generate-manifest-json');
-
-    const tree = new GenerateManifest(path.join(this.app.project.root, 'config'), {
+    const manifest = new GenerateManifest(path.join(this.app.project.root, 'config'), {
       manifestName: MANIFEST_NAME,
       project: this.app.project,
       env: this.app.env,
       ui: this.ui
     });
-    console.log(tree);
-    return tree;
+
+    const GenerateBrowserconfig = require('./lib/broccoli/generate-browserconfig-xml');
+    const browserconfig = new GenerateBrowserconfig(path.join(this.app.project.root, 'config'), {
+      browserconfigName: BROWSERCONFIG_NAME,
+      project: this.app.project,
+      env: this.app.env,
+      ui: this.ui
+    });
+
+    return new BroccoliMergeTrees([manifest, browserconfig]);
   },
 
   contentFor(section, config) {
