@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - "6"
+  - "4"
 
 addons:
   chrome: stable
@@ -18,10 +18,14 @@ env:
 matrix:
   fast_finish: true
 
+before_install:
+  # NPM >= 3 is needed for ember-cli
+  - npm i -g npm@^3
+
 install:
   - yarn install --no-lockfile
 
 script:
-  # Usually, it's ok to finish the test scenario without reverting
-  #  to the addon's original dependency state, skipping "cleanup".
+  # Usually, it's ok to finish the test scenario without reverting to the
+  # addon's original dependency state, skipping "cleanup".
   - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
