@@ -65,6 +65,68 @@ describe('Unit: faviconLinkTags()', function() {
     assert.deepEqual(faviconLinkTags(manifest, config), expected);
   });
 
+  it('renders sizes attribute when it is defined', function() {
+    var config = {
+      rootURL: '/'
+    };
+    var manifest = {
+      icons: [
+        {
+          src: '/foo/bar.png',
+          sizes: '16x16',
+          targets: ['favicon']
+        }
+      ]
+    };
+
+    var expected = [
+      '<link rel="icon" href="/foo/bar.png" sizes="16x16">',
+    ];
+
+    assert.deepEqual(faviconLinkTags(manifest, config), expected);
+  });
+
+  it('does not render type attribute when is not defined', function() {
+    var config = {
+      rootURL: '/'
+    };
+    var manifest = {
+      icons: [
+        {
+          src: '/foo/bar.png',
+          targets: ['favicon']
+        }
+      ]
+    };
+
+    var expected = [
+      '<link rel="icon" href="/foo/bar.png">',
+    ];
+
+    assert.deepEqual(faviconLinkTags(manifest, config), expected);
+  });
+
+  it('renders type attribute when it is defined', function() {
+    var config = {
+      rootURL: '/'
+    };
+    var manifest = {
+      icons: [
+        {
+          src: '/foo/bar.png',
+          type: 'image/png',
+          targets: ['favicon']
+        }
+      ]
+    };
+
+    var expected = [
+      '<link rel="icon" href="/foo/bar.png" type="image/png">',
+    ];
+
+    assert.deepEqual(faviconLinkTags(manifest, config), expected);
+  });
+
   it('uses \'/\' as rootURL if it is undefined', function() {
     var config = {}
 
