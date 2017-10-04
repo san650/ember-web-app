@@ -1,5 +1,7 @@
 module.exports = function() {
   return {
-    name: 'foo'
+    name: 'foo',
+
+    ms: true
   };
 };

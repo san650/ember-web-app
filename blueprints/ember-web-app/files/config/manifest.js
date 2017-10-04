@@ -14,6 +14,9 @@ module.exports = function(/* environment, appConfig */) {
     background_color: "#fff",
     theme_color: "#fff",
     icons: [
-    ]
+    ],
+    ms: {
+      tileColor: '#fff'
+    }
   };
 }

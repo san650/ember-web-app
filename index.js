@@ -77,7 +77,7 @@ module.exports = {
 
       tags = tags.concat(require('./lib/android-meta-tags')(this.manifestConfiguration, config));
       tags = tags.concat(require('./lib/apple-meta-tags')(this.manifestConfiguration, config));
-      tags = tags.concat(require('./lib/ms-meta-tags')(config, BROWSERCONFIG_NAME));
+      tags = tags.concat(require('./lib/ms-meta-tags')(this.manifestConfiguration, config, BROWSERCONFIG_NAME));
 
       return tags.join('\n');
     }

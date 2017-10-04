@@ -78,6 +78,29 @@ describe('Acceptance: browserconfig file generation', function() {
       });
   });
 
+  it(`doesn't generate browserconfig when 'ms' is falsey`, function() {
+    return app
+      .create('no-ms', {
+        fixturesPath: 'node-tests/acceptance/fixtures',
+      })
+      .then(function() {
+        return app.runEmberCommand('build')
+      })
+      .then(function() {
+        assert.ok(
+          !fs.existsSync(app.filePath('dist/browserconfig.xml')),
+          `Doesn't generate browserconfig.xml file`
+        );
+      })
+      .then(contentOf(app, 'dist/index.html'))
+      .then(function(content) {
+        assert.ok(
+          !content.includes('msapplication-config'),
+          `Doesn't include meta tags`
+        );
+      });
+  });
+
   it('uses rootURL configuration', function() {
     return app
       .create('config-root-url', {
