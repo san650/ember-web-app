@@ -415,7 +415,6 @@ icons: [
 | ---        | ---       |
 | `manifest` | `{ "icons": [ { "src": "/foo/bar.png", "sizes": "180x180" } ] }`
 | `apple`    | `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="180x180">` `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="280x280">`
-| `ms`       | does not apply (for now)
 | `android`  | does not apply
 | `favicon`  | `<link rel="icon" href="/bar/fav.png" sizes="32x32">`
 | `ms`       | icon in `browserconfig.xml`
@@ -605,7 +604,7 @@ Example
 
 ```js
 manifest.apple = {
- statusBarStyle: 'black-translucent'
+  statusBarStyle: 'black-translucent'
 };
 ```
 
@@ -630,7 +629,7 @@ Example
 
 ```js
 manifest.apple = {
- precomposed: 'true'
+  precomposed: 'true'
 };
 ```
 
@@ -655,9 +654,9 @@ Example
 
 ```js
 manifest.apple = {
- formatDetection: {
-   telephone: false
- }
+  formatDetection: {
+    telephone: false
+  }
 };
 ```
 
@@ -681,7 +680,7 @@ Example
 
 ```js
 manifest.ms = {
- tileColor: '#ffffff'
+  tileColor: '#ffffff'
 };
 ```
 
