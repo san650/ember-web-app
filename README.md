@@ -255,7 +255,12 @@ Not all targets are used for all properties (actually, most properties are not a
 * [`scope`](#scope)
 * [`start_url`](#start_url)
 * [`theme_color`](#theme_color)
-* [`apple.statusBarStyle`](#applestatusbarstyle)
+* [`apple`](#apple)
+  * [`apple.statusBarStyle`](#applestatusbarstyle)
+  * [`apple.precomposed`](#appleprecomposed)
+  * [`apple.formatDetection`](#appleformatdetection)
+* [`ms`](#ms)
+  * [`ms.tileColor`](#mstilecolor)
 
 #### `name`
 
@@ -567,7 +572,7 @@ manifest.theme_color = "aliceblue";
 
 #### `apple`
 
-> Turns on/off the generation of apple specific meta and link tags.
+> Turns on/off the generation of Apple-specific meta and link tags.
 
 Possible values:
   * `true` Turn on. This is the default value.
@@ -617,9 +622,9 @@ manifest.apple = {
 
 #### `apple.precomposed`
 
-> Adds `precomposed` suffix to apple touch icons
+> Adds `precomposed` suffix to Apple touch icons
 
-See [Precomposed Keyword for apple touch icons](https://mathiasbynens.be/notes/touch-icons#effects)
+See [Precomposed Keyword for Apple touch icons](https://mathiasbynens.be/notes/touch-icons#effects)
 
 Possible values:
   * `true` Adds precomposed suffix.
@@ -666,6 +671,21 @@ manifest.apple = {
 | `apple`    | `<meta name="format-detection" content="telephone=no">`
 | `ms`       | does not apply
 | `android`  | does not apply
+
+#### `ms`
+
+> Turns on/off the generation of Microsoft-specific meta and link tags.
+
+Possible values:
+  * `true` Turn on.
+  * `false` Turn off. This is the default value.
+  * An object with custom settings (see the settings below)
+
+Example
+
+```js
+manifest.ms = false;
+```
 
 #### `ms.tileColor`
 
