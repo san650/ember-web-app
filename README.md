@@ -552,6 +552,33 @@ manifest.apple = false;
 | `ms`       | does not apply
 | `android`  | does not apply
 
+#### `apple.webAppCapable`
+
+> Overrides `manifest.display` for the generation of the `apple-mobile-web-app-capable` meta tag.
+
+Possible values:
+  * `true` Turn on.
+  * `false` Turn off.
+
+Example
+
+```js
+manifest = {
+  display: 'standalone',
+  apple: {
+    webAppCapable: false
+  }
+};
+```
+
+| Target     | Generates |
+| ---        | ---       |
+| `manifest` | does not apply
+| `apple`    | `<meta name="apple-mobile-web-app-capable" content="yes">`
+| `ms`       | does not apply
+| `android`  | does not apply
+
+
 #### `apple.statusBarStyle`
 
 > Sets the style of the status bar for a web application in iOS

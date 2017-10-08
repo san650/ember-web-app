@@ -57,6 +57,62 @@ describe('Unit: appleMetaTags()', function() {
     assert.ok(actual.indexOf(notExpected) === -1);
   });
 
+  it('does not return `web-app-capable` meta tag when display mode is fullscreen, but apple.webAppCapable is false', function() {
+    var manifest = {
+      display: 'fullscreen',
+      apple: {
+        webAppCapable: false
+      }
+    };
+    var notExpected = '<meta name="apple-mobile-web-app-capable" content="yes">';
+
+    var actual = appleMetaTags(manifest);
+
+    assert.ok(actual.indexOf(notExpected) === -1);
+  });
+
+  it('does not return `web-app-capable` meta tag when display mode is standalone, but apple.webAppCapable is false', function() {
+    var manifest = {
+      display: 'standalone',
+      apple: {
+        webAppCapable: false
+      }
+    };
+    var notExpected = '<meta name="apple-mobile-web-app-capable" content="yes">';
+
+    var actual = appleMetaTags(manifest);
+
+    assert.ok(actual.indexOf(notExpected) === -1);
+  });
+
+  it('returns `web-app-capable` meta tag when display mode is browser, but apple.webAppCapable is true', function() {
+    var manifest = {
+      display: 'browser',
+      apple: {
+        webAppCapable: true
+      }
+    };
+    var expected = '<meta name="apple-mobile-web-app-capable" content="yes">';
+
+    var actual = appleMetaTags(manifest);
+
+    assert.ok(actual.indexOf(expected) > -1);
+  });
+
+  it('returns `web-app-capable` meta tag when display mode is browser, but apple.webAppCapable is true', function() {
+    var manifest = {
+      display: 'minimal-ui',
+      apple: {
+        webAppCapable: true
+      }
+    };
+    var expected = '<meta name="apple-mobile-web-app-capable" content="yes">';
+
+    var actual = appleMetaTags(manifest);
+
+    assert.ok(actual.indexOf(expected) > -1);
+  });
+
   it('returns `web-app-title` meta tag', function() {
     var manifest = { name: 'foo bar' };
     var expected = '<meta name="apple-mobile-web-app-title" content="foo bar">';
