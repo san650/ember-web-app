@@ -51,6 +51,7 @@ See the [documentation](#documentation) section below for more information.
     * [`apple.statusBarStyle`](#applestatusbarstyle)
     * [`apple.precomposed`](#appleprecomposed)
     * [`apple.formatDetection`](#appleformatdetection)
+    * [`apple.webAppCapable`](#applewebappcapable)
 * [Development](#development)
 * [Project's health](#projects-health)
 * [License](#license)
