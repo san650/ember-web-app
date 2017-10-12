@@ -21,7 +21,6 @@ Addon features:
 Here's a brief list of the main missing features that we intend to add in the future.
 
 * Generate image variants for different devices
-* Generate Microsoft's browserconfig.xml manifest for Win8/Win10 integration
 
 See the [documentation](#documentation) section below for more information.
 
@@ -52,6 +51,8 @@ See the [documentation](#documentation) section below for more information.
     * [`apple.precomposed`](#appleprecomposed)
     * [`apple.formatDetection`](#appleformatdetection)
     * [`apple.webAppCapable`](#applewebappcapable)
+  * [`ms`](#ms)
+    * [`ms.tileColor`](#mstilecolor)
 * [Development](#development)
 * [Project's health](#projects-health)
 * [License](#license)
@@ -95,11 +96,20 @@ module.exports = function() {
         sizes: "180x180",
         type: "image/png",
         targets: ['apple']
+      },
+      {
+        src: "/images/icons/mstile-150x150.png",
+        element: "150x150",
+        targets: ['ms']
       }
     ],
 
     apple: {
       statusBarStyle: 'black-translucent'
+    },
+
+    ms: {
+      tileColor: '#ffffff'
     }
   }
 }
@@ -111,13 +121,18 @@ It will generate the following meta tags
 
 ```html
 <link rel="manifest" href="/manifest.webmanifest">
+
 <link rel="apple-touch-icon" href="/images/icons/android-chrome-192x192-883114367f2d72fc9a509409454a1e73.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/images/icons/android-chrome-512x512-af3d768ff652dc2be589a3c22c6dc827.png" sizes="512x512">
 <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon-36cba25bc155e8ba414265f9d85861ca.png" sizes="180x180">
+
 <meta name="theme-color" content="#ffa105">
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Let's Cook">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
 ```
 
 and the following `manifest.webmanifest` file
@@ -144,6 +159,20 @@ and the following `manifest.webmanifest` file
     }
   ]
 }
+```
+
+and the following `browserconfig.xml` file
+
+```xml
+<?xml version="1.0"?>
+<browserconfig>
+  <msapplication>
+    <tile>
+      <square150x150logo src="/images/icons/mstile-150x150.png"/>
+      <TileColor>#ffffff</TileColor>
+    </tile>
+  </msapplication>
+</browserconfig>
 ```
 
 ## Configuration
@@ -227,7 +256,12 @@ Not all targets are used for all properties (actually, most properties are not a
 * [`scope`](#scope)
 * [`start_url`](#start_url)
 * [`theme_color`](#theme_color)
-* [`apple.statusBarStyle`](#applestatusbarstyle)
+* [`apple`](#apple)
+  * [`apple.statusBarStyle`](#applestatusbarstyle)
+  * [`apple.precomposed`](#appleprecomposed)
+  * [`apple.formatDetection`](#appleformatdetection)
+* [`ms`](#ms)
+  * [`ms.tileColor`](#mstilecolor)
 
 #### `name`
 
@@ -355,6 +389,7 @@ Image object members:
   * `sizes` A string containing space-separated image dimensions.
   * `type` A hint as to the media type of the image.
   * `targets` **Non standard** Targets for the images. ['manifest', 'apple'] by default.
+  * `element` **Non standard** Only when the target is `ms`. Must be one of `square70x70logo`, `square150x150logo`, `wide310x150logo` or `square310x310logo`.
 
 Example
 
@@ -373,6 +408,11 @@ icons: [
     src: '/bar/fav.png',
     sizes: '32x32',
     targets: ['favicon']
+  },
+  {
+    src: '/bar/ms.png',
+    element: 'square70x70logo', // non-standard property
+    targets: ['ms'] // non-standard-prroperty
   }
 ];
 ```
@@ -381,9 +421,9 @@ icons: [
 | ---        | ---       |
 | `manifest` | `{ "icons": [ { "src": "/foo/bar.png", "sizes": "180x180" } ] }`
 | `apple`    | `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="180x180">` `<link rel="apple-touch-icon" href="/foo/bar.png" sizes="280x280">`
-| `ms`       | does not apply (for now)
 | `android`  | does not apply
 | `favicon`  | `<link rel="icon" href="/bar/fav.png" sizes="32x32">`
+| `ms`       | icon in `browserconfig.xml`
 
 #### `lang`
 
@@ -533,7 +573,7 @@ manifest.theme_color = "aliceblue";
 
 #### `apple`
 
-> Turns on/off the generation of apple specific meta and link tags.
+> Turns on/off the generation of Apple-specific meta and link tags.
 
 Possible values:
   * `true` Turn on. This is the default value.
@@ -597,7 +637,7 @@ Example
 
 ```js
 manifest.apple = {
- statusBarStyle: 'black-translucent'
+  statusBarStyle: 'black-translucent'
 };
 ```
 
@@ -610,9 +650,9 @@ manifest.apple = {
 
 #### `apple.precomposed`
 
-> Adds `precomposed` suffix to apple touch icons
+> Adds `precomposed` suffix to Apple touch icons
 
-See [Precomposed Keyword for apple touch icons](https://mathiasbynens.be/notes/touch-icons#effects)
+See [Precomposed Keyword for Apple touch icons](https://mathiasbynens.be/notes/touch-icons#effects)
 
 Possible values:
   * `true` Adds precomposed suffix.
@@ -622,7 +662,7 @@ Example
 
 ```js
 manifest.apple = {
- precomposed: 'true'
+  precomposed: 'true'
 };
 ```
 
@@ -647,9 +687,9 @@ Example
 
 ```js
 manifest.apple = {
- formatDetection: {
-   telephone: false
- }
+  formatDetection: {
+    telephone: false
+  }
 };
 ```
 
@@ -659,6 +699,38 @@ manifest.apple = {
 | `apple`    | `<meta name="format-detection" content="telephone=no">`
 | `ms`       | does not apply
 | `android`  | does not apply
+
+#### `ms`
+
+> Turns on/off the generation of Microsoft-specific meta and link tags.
+
+Possible values:
+  * `true` Turn on.
+  * `false` Turn off. This is the default value.
+  * An object with custom settings (see the settings below)
+
+Example
+
+```js
+manifest.ms = false;
+```
+
+#### `ms.tileColor`
+
+> Sets the `<TileColor>` property in `browserconfig.xml`.
+
+See [Browser configuration schema reference](https://msdn.microsoft.com/en-us/library/dn320426(v=vs.85).aspx)
+
+Possible values:
+  * A color in hex format.
+
+Example
+
+```js
+manifest.ms = {
+  tileColor: '#ffffff'
+};
+```
 
 ## Development
 

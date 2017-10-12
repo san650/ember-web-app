@@ -3,8 +3,10 @@
 
 const path = require('path');
 const getManifestConfiguration = require('./lib/get-manifest-configuration');
+const BroccoliMergeTrees = require('broccoli-merge-trees');
 
 const MANIFEST_NAME = 'manifest.webmanifest';
+const BROWSERCONFIG_NAME = 'browserconfig.xml';
 
 module.exports = {
   name: 'ember-web-app',
@@ -40,14 +42,25 @@ module.exports = {
   },
 
   treeForPublic() {
-    const GenerateManifest = require('./lib/broccoli/generate-manifest-json');
+    const configPath = path.join(this.app.project.root, 'config');
 
-    return new GenerateManifest(path.join(this.app.project.root, 'config'), {
+    const GenerateManifest = require('./lib/broccoli/generate-manifest-json');
+    const manifest = new GenerateManifest(configPath, {
       manifestName: MANIFEST_NAME,
       project: this.app.project,
       env: this.app.env,
       ui: this.ui
     });
+
+    const GenerateBrowserconfig = require('./lib/broccoli/generate-browserconfig-xml');
+    const browserconfig = new GenerateBrowserconfig(configPath, {
+      browserconfigName: BROWSERCONFIG_NAME,
+      project: this.app.project,
+      env: this.app.env,
+      ui: this.ui
+    });
+
+    return new BroccoliMergeTrees([manifest, browserconfig]);
   },
 
   contentFor(section, config) {
@@ -64,6 +77,7 @@ module.exports = {
 
       tags = tags.concat(require('./lib/android-meta-tags')(this.manifestConfiguration, config));
       tags = tags.concat(require('./lib/apple-meta-tags')(this.manifestConfiguration, config));
+      tags = tags.concat(require('./lib/ms-meta-tags')(this.manifestConfiguration, config, BROWSERCONFIG_NAME));
 
       return tags.join('\n');
     }
@@ -71,7 +85,14 @@ module.exports = {
 
   _configureFingerprint() {
     let configureFingerprint = require('./lib/configure-fingerprint');
-    this.app.options.fingerprint = configureFingerprint(this.app.options.fingerprint, MANIFEST_NAME);
+
+    this.app.options.fingerprint = configureFingerprint(
+      this.app.options.fingerprint, MANIFEST_NAME
+    );
+
+    this.app.options.fingerprint = configureFingerprint(
+      this.app.options.fingerprint, BROWSERCONFIG_NAME
+    );
   },
 
   _disabled() {
