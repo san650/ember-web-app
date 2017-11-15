@@ -390,6 +390,7 @@ Image object members:
   * `type` A hint as to the media type of the image.
   * `targets` **Non standard** Targets for the images. ['manifest', 'apple'] by default.
   * `element` **Non standard** Only when the target is `ms`. Must be one of `square70x70logo`, `square150x150logo`, `wide310x150logo` or `square310x310logo`.
+  * `safariPinnedTabColor` **Non standard** Only when the target is `safari-pinned-tab`. Can specify a single color with a hexadecimal value (#990000), an RGB value (rgb(153, 0, 0)), or a recognized color-keyword, such as: red, lime, or navy..
 
 Example
 
@@ -412,7 +413,12 @@ icons: [
   {
     src: '/bar/ms.png',
     element: 'square70x70logo', // non-standard property
-    targets: ['ms'] // non-standard-prroperty
+    targets: ['ms'] // non-standard-property
+  },
+  {
+    src: '/foo/monochrome.svg',
+    safariPinnedTabColor: '#cc6600', // non-standard property
+    targets: ['safari-pinned-tab'] // non-standard-property
   }
 ];
 ```
@@ -424,6 +430,7 @@ icons: [
 | `android`  | does not apply
 | `favicon`  | `<link rel="icon" href="/bar/fav.png" sizes="32x32">`
 | `ms`       | icon in `browserconfig.xml`
+| `safari-pinned-tab`    | `<link rel="mask-icon" href="/foo/monochrome.svg" color="#cc6600">`
 
 #### `lang`
 
