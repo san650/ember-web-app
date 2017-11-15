@@ -18,10 +18,6 @@ Addon features:
 * Generates equivalent meta tags for supporting other devices (e.g. iPhone)
 * Validates the configuration
 
-Here's a brief list of the main missing features that we intend to add in the future.
-
-* Generate image variants for different devices
-
 See the [documentation](#documentation) section below for more information.
 
 ## Table of content
@@ -53,6 +49,7 @@ See the [documentation](#documentation) section below for more information.
     * [`apple.webAppCapable`](#applewebappcapable)
   * [`ms`](#ms)
     * [`ms.tileColor`](#mstilecolor)
+* [Generating Icons](#generating-icons)
 * [Development](#development)
 * [Project's health](#projects-health)
 * [License](#license)
@@ -730,6 +727,47 @@ Example
 manifest.ms = {
   tileColor: '#ffffff'
 };
+```
+
+## Generating Icons
+
+`ember-web-app` doesn't generate icons or images. If you want to automate the generation of icons starting from a master image, you can install `ember-cli-image-transformer`.
+
+Managing all the various icon sizes and types can be overwhelming. One solution is to start with a base image which can be use to generate the necessary icon permutations for your environment.  You can use [ember-cli-image-transformer](https://github.com/jrjohnson/ember-cli-image-transformer) to handle this task.
+
+If your `manifest.js` looks like this and needs a 192px and a 512px icon:
+
+```javascript
+// config/manifest.js
+export default function() {
+  return {
+    icons: [192, 512].map((size) => ({
+      src: `/images/icons/android-chrome-${size}.png`,
+      sizes: `${size}`,
+      type: "image/png"
+    }))
+  };
+}
+```
+
+You can start with a base `brand-icon.svg` image and automatically build the 192x192 and 512x512 versions by installing `ember-cli-image-transformer` and adding the necessary configuration to your `ember-cli-build.js` file:
+
+```javascript
+// ember-cli-build.js
+module.exports = function(defaults) {
+  var app = new EmberApp(defaults, {
+    'ember-cli-image-transformer': {
+      images: [
+        {
+          inputFilename: 'lib/images/brand-icon.svg',
+          outputFileName: 'android-chrome-',
+          convertTo: 'png',
+          destination: 'images/icons/',
+          sizes: [192, 512]
+        }
+      ]
+    }
+  });
 ```
 
 ## Development
