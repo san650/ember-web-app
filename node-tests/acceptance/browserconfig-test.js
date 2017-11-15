@@ -1,7 +1,6 @@
 'use strict';
 
 let assert = require('assert');
-let RSVP = require('rsvp');
 let fs = require('fs');
 let AddonTestApp = require('ember-cli-addon-tests').AddonTestApp;
 

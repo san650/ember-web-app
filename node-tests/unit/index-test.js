@@ -2,8 +2,6 @@
 
 var assert = require('assert');
 var pristineIndex = require('../../index');
-var MockUI = require('console-ui/mock');
-var stripAnsi = require('strip-ansi');
 
 function createIndex() {
   return Object.assign(
@@ -68,6 +66,23 @@ describe('Unit: index', function() {
       index._disabled = function() { return true; };
 
       assert.ok(!index.contentFor('head', { rootURL: '/' }), 'Doesn\'t include meta tags when disabled');
+    });
+
+    it('returns safari pinned tab link tags', function() {
+      var expected = '<link rel="mask-icon" href="/foo/bar.svg" color="red">';
+      var index = createIndex();
+
+      index.manifestConfiguration = {
+        icons: [
+          {
+            src: '/foo/bar.svg',
+            safariPinnedTabColor: 'red',
+            targets: ['safari-pinned-tab'],
+          }
+        ]
+      };
+
+      assert.ok(index.contentFor('head', { rootURL: '/' }).includes(expected));
     });
   });
 });
