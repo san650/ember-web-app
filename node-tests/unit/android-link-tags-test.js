@@ -8,7 +8,7 @@ describe('Unit: androidLinkTags()', function() {
     var manifest = {};
     var config = {};
     var expected = [
-      '<link rel="manifest" href="/manifest.webmanifest">'
+      '<link rel="manifest" href="manifest.webmanifest">'
     ];
 
     assert.deepEqual(androidLinkTags(config, 'manifest.webmanifest'), expected);
