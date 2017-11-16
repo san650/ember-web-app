@@ -748,11 +748,17 @@ If your `manifest.js` looks like this and needs a 192px and a 512px icon:
 // config/manifest.js
 export default function() {
   return {
-    icons: [192, 512].map((size) => ({
-      src: `/images/icons/android-chrome-${size}.png`,
-      sizes: `${size}`,
-      type: "image/png"
-    }))
+    icons: [
+      {
+        src: '/assets/icons/appicon-32.png',
+        sizes: `32x32`,
+        targets: ['favicon']
+      },
+      ...[192, 280, 512].map((size) => ({
+        src: `/assets/icons/appicon-${size}.png`,
+        sizes: `${size}x${size}`
+      }))
+    ]
   };
 }
 ```
@@ -767,10 +773,10 @@ module.exports = function(defaults) {
       images: [
         {
           inputFilename: 'lib/images/brand-icon.svg',
-          outputFileName: 'android-chrome-',
+          outputFileName: 'appicon-',
           convertTo: 'png',
-          destination: 'images/icons/',
-          sizes: [192, 512]
+          destination: 'assets/icons/',
+          sizes: [32, 192, 280, 512]
         }
       ]
     }
