@@ -127,7 +127,7 @@ describe('Unit: faviconLinkTags()', function() {
     assert.deepEqual(faviconLinkTags(manifest, config), expected);
   });
 
-  it('uses \'/\' as rootURL if it is undefined', function() {
+  it('uses an empty string as rootURL if it is undefined', function() {
     var config = {}
 
     var manifest = {
@@ -140,7 +140,7 @@ describe('Unit: faviconLinkTags()', function() {
     };
 
     var expected = [
-      '<link rel="icon" href="/bar.png">',
+      '<link rel="icon" href="bar.png">',
     ];
 
     assert.deepEqual(faviconLinkTags(manifest, config), expected);

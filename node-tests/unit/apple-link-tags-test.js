@@ -91,7 +91,7 @@ describe('Unit: appleLinkTags()', function() {
     assert.deepEqual(appleLinkTags(manifest, config), expected);
   });
 
-  it('uses \'/\' as rootURL if it is undefined', function() {
+  it('uses an empty string as rootURL if it is undefined', function() {
     var config = {}
 
     var manifest = {
@@ -103,7 +103,7 @@ describe('Unit: appleLinkTags()', function() {
     };
 
     var expected = [
-      '<link rel="apple-touch-icon" href="/bar.png">',
+      '<link rel="apple-touch-icon" href="bar.png">',
     ];
 
     assert.deepEqual(appleLinkTags(manifest, config), expected);

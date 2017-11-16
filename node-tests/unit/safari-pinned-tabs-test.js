@@ -66,7 +66,7 @@ describe('Unit: safariPinnedTabs()', function() {
     assert.deepEqual(safariPinnedTabTags(manifest, config), expected);
   });
 
-  it('uses \'/\' as rootURL if it is undefined', function() {
+  it('uses an empty string as rootURL if it is undefined', function() {
     var config = {}
 
     var manifest = {
@@ -79,7 +79,7 @@ describe('Unit: safariPinnedTabs()', function() {
     };
 
     var expected = [
-      '<link rel="mask-icon" href="/bar.svg">',
+      '<link rel="mask-icon" href="bar.svg">',
     ];
 
     assert.deepEqual(safariPinnedTabTags(manifest, config), expected);

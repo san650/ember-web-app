@@ -13,7 +13,7 @@ describe('Unit: msMetaTags()', function() {
     assert.deepEqual(
       msMetaTags(manifest, config, 'browserconfig.xml'),
       [
-        '<meta name="msapplication-config" content="/browserconfig.xml">'
+        '<meta name="msapplication-config" content="browserconfig.xml">'
       ]
     );
   });
