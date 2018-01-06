@@ -802,6 +802,8 @@ $ npm test
 [![Build Status](https://travis-ci.org/san650/ember-web-app.svg?branch=master)](https://travis-ci.org/san650/ember-web-app)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-web-app.svg)](https://emberobserver.com/addons/ember-web-app)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c7249928bfed1caa9e98/maintainability)](https://codeclimate.com/github/san650/ember-web-app/maintainability)
+[![dependencies Status](https://david-dm.org/san650/ember-web-app/status.svg)](https://david-dm.org/san650/ember-web-app)
+[![devDependencies Status](https://david-dm.org/san650/ember-web-app/dev-status.svg)](https://david-dm.org/san650/ember-web-app?type=dev)
 
 ## License
 
