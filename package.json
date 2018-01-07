@@ -61,7 +61,7 @@
     "strip-ansi": "^3.0.1"
   },
   "engines": {
-    "node": "6.* || >= 7.* || >= 8.*"
+    "node": ">= 4 || 6.* || >= 7.* || >= 8.*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
