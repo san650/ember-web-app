@@ -1,31 +1,40 @@
 ---
 language: node_js
 node_js:
-  - "4"
+  - "8"
+
+sudo: false
+dist: trusty
 
 addons:
   chrome: stable
-
-sudo: false
 
 cache:
   yarn: true
 
 env:
-  - EMBER_TRY_SCENARIO=ember-default
-  - EMBER_TRY_SCENARIO=node-tests
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
+  matrix:
+    - EMBER_TRY_SCENARIO=ember-default
+    - EMBER_TRY_SCENARIO=node-tests
 
 matrix:
   fast_finish: true
 
+branches:
+  only:
+    - "master"
+
 before_install:
-  # NPM >= 3 is needed for ember-cli
-  - npm i -g npm@^3
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
 
 install:
-  - yarn install --no-lockfile
+  - yarn install --no-lockfile --non-interactive
 
 script:
-  # Usually, it's ok to finish the test scenario without reverting to the
-  # addon's original dependency state, skipping "cleanup".
-  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
+  # Usually, it's ok to finish the test scenario without reverting
+  #  to the addon's original dependency state, skipping "cleanup".
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
