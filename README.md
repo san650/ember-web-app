@@ -96,7 +96,7 @@ module.exports = function() {
       },
       {
         src: "/images/icons/mstile-150x150.png",
-        element: "150x150",
+        element: "square150x150logo",
         targets: ['ms']
       }
     ],
