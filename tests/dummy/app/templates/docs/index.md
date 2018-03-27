@@ -1,4 +1,4 @@
-# Introduction
+# Overview
 
 [![Build Status](https://travis-ci.org/san650/ember-web-app.svg?branch=master)](https://travis-ci.org/san650/ember-web-app)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-web-app.svg)](https://emberobserver.com/addons/ember-web-app)

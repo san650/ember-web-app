@@ -10,6 +10,10 @@ Router.map(function() {
   this.route('docs', function() {
     this.route('installation');
     this.route('configuration');
+    this.route('schema', function() {
+      this.route('name');
+      this.route('short_name');
+    });
     this.route('api', function() {
       this.route('item', { path: '/*path' });
     });
