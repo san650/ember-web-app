@@ -40,4 +40,6 @@ script:
   - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
 
 after_success:
- - NAME=deploy node_modules/.bin/ember deploy production
+  - if [[ ($TRAVIS_BRANCH == master || -n $TRAVIS_TAG) && $EMBER_TRY_SCENARIO == ember-default ]]; then
+      node_modules/.bin/ember deploy production;
+    fi
