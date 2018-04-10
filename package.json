@@ -38,7 +38,7 @@
     "broccoli-test-helpers": "^0.0.9",
     "ember-ajax": "^3.0.0",
     "ember-cli": "2.17.0",
-    "ember-cli-addon-docs": "^0.3.0",
+    "ember-cli-addon-docs": "san650/ember-cli-addon-docs#update-ember-router-scroll",
     "ember-cli-addon-docs-yuidoc": "^0.1.1",
     "ember-cli-addon-tests": "^0.11.0",
     "ember-cli-blueprint-test-helpers": "^0.18.3",
