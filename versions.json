@@ -1,6 +1,6 @@
 {
   "doc_site": {
-    "sha": "49179f1d52f180cb5e2b20cdec5c98938205c59e",
+    "sha": "2397cb00b51b60fbd94bd55d7e68c6a03baae9cc",
     "tag": null,
     "path": "doc_site",
     "name": "doc_site"
@@ -10,5 +10,11 @@
     "tag": null,
     "path": "master",
     "name": "master"
+  },
+  "latest": {
+    "sha": "2397cb00b51b60fbd94bd55d7e68c6a03baae9cc",
+    "tag": null,
+    "path": "latest",
+    "name": "latest"
   }
 }
