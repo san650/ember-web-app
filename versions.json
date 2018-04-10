@@ -6,13 +6,13 @@
     "name": "doc_site"
   },
   "master": {
-    "sha": "4c869f566105901ef27cb17db62ba7d4810c1e0f",
+    "sha": "5863641def03b368013bdb5b895a37bff66077fb",
     "tag": null,
     "path": "master",
     "name": "master"
   },
   "latest": {
-    "sha": "2397cb00b51b60fbd94bd55d7e68c6a03baae9cc",
+    "sha": "5863641def03b368013bdb5b895a37bff66077fb",
     "tag": null,
     "path": "latest",
     "name": "latest"
