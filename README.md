@@ -209,7 +209,7 @@ var broccoliAssetRevDefaults = require( 'broccoli-asset-rev/lib/default-options'
 module.exports = function(defaults) {
   var options = {
     fingerprint: {
-      extensions: broccoliAssetRevDefaults.concat(['webmanifest']),
+      extensions: broccoliAssetRevDefaults.extensions.concat(['webmanifest']),
       prepend: 'https://www.example.com/'
     }
   };
